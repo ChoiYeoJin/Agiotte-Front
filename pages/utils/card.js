@@ -1,6 +1,5 @@
 import "../index.css";
 import { getTagHTML } from "./tags.js";
-console.log(getTagHTML("new"));
 
 export const getCardHTML = (name, price, img, tag) => {
   return `
