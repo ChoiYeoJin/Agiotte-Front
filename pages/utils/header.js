@@ -69,7 +69,7 @@ document.querySelector("#header").innerHTML = `
           </div>
 
           <div
-            class="block w-full h-[200px] bg-white group-hover:block dropdown-menu-1 absolute hidden pt-3 pl-2"
+            class="block w-full h-[200px] bg-white group-hover:block dropdown-menu-1 absolute hidden pt-3 pl-2 z-10"
           >
             <div class="bg-white flex space-x-10 pt-5 pl-20">
               <div>
