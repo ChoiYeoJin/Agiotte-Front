@@ -1,9 +1,10 @@
 import "../index.css";
 import { getTagHTML } from "./tags.js";
 
-export const getCardHTML = (name, price, img, tag) => {
+export const getCardHTML = (id, name, price, img, tag) => {
   return `
       <div class="card ml-5 mt-5 w-[260px] h-[430px] flex-none  bg-transparent">
+        <a class="absolute top-0 left-0 w-full h-full cursor-pointer z-10" href="/products/${id}"></a>
         <img class="w-[260px] h-[300px] rounded-[10px]" src="${img}" />
         <div class="text-center">
           ${getTagHTML(tag)}
