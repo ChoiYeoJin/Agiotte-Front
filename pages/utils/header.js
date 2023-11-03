@@ -13,7 +13,7 @@ document.querySelector("#header").innerHTML = `
           </a>
         </div>
         <div class="w-[450px]">
-          <i class="fa-solid fa-magnifying-glass"></i>
+          <i class="fa-solid fa-magnifying-glass absolute ml-[26rem] mt-6"></i>
           <input
             class="w-full h-10 mt-3 px-2 rounded-[5px] bg-[#efefef]"
             type="text"
