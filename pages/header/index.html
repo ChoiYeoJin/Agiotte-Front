@@ -1,15 +1,22 @@
-//TODO: 돋보기 아이콘 넣기, 페이지 나오면 링크 넣기
-//
-import "../index.css";
-import logo from "/imgs/logo.png";
-import loginButton from "/imgs/login_button.png";
-
-document.querySelector("#header").innerHTML = `
-        <div class="header w-full h-[170px]">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../index.css" />
+    <link
+      href="//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
+  <body>
+    <div class="header w-full h-[170px]">
       <div class="head flex justify-between px-20 pt-5">
         <div>
           <a href="#">
-            <img class="w-40" src="${logo}" alt="logo" />
+            <img class="w-40" src="/imgs/logo.png" alt="logo" />
           </a>
         </div>
         <div class="w-[450px]">
@@ -25,7 +32,7 @@ document.querySelector("#header").innerHTML = `
         <button href="#" onclick="location.href='../login/'">
           <img
             class="headerLoginButton mt-3"
-            src="${loginButton}"
+            src="/imgs/login_button.png"
             alt="login"
           />
         </button>
@@ -71,7 +78,9 @@ document.querySelector("#header").innerHTML = `
           <div
             class="block w-full h-[200px] bg-white group-hover:block dropdown-menu-1 absolute hidden pt-3 pl-2"
           >
-            <div class="bg-white flex space-x-10 pt-5 pl-20">
+            <div
+              class="bg-white flex space-x-10 pt-5 pl-20 bg-opacity-80 transition-opacity"
+            >
               <div>
                 <div><a class="block" href="#">여아의류</a></div>
                 <div><a class="block mt-2" href="#">남아의류</a></div>
@@ -88,4 +97,7 @@ document.querySelector("#header").innerHTML = `
         </nav>
       </div>
     </div>
-`;
+    <div class="w-[1000pc] h-[300px] bg-sky-700"></div>
+  </body>
+</html>
+<script src="./header.js" type="module"></script>
