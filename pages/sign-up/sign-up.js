@@ -1,4 +1,28 @@
-//회원가입 기능
+let isIdAvailable = false; // 아이디 중복 여부를 저장하는 변수
+
+// id 중복 체크 버튼
+document.getElementById("checkId").addEventListener("click", function () {
+  const userId = document.getElementById("sign-up-id").value;
+
+  axios
+    .post(`https://kdt-sw-7-team02.elicecoding.com/users/${userId}`, {
+      id: userId,
+    })
+    .then(function (response) {
+      if (response.data.isDuplicated) {
+        alert("이미 사용중인 아이디입니다.");
+        isIdAvailable = false;
+      } else {
+        alert("사용 가능한 아이디입니다.");
+        isIdAvailable = true;
+      }
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+});
+
+// 회원가입 버튼
 document
   .getElementById("sign-up-form")
   .addEventListener("submit", function (event) {
@@ -19,10 +43,26 @@ document
       return;
     }
 
+    // 아이디 사용 가능 여부 검증
+    if (!isIdAvailable) {
+      alert("아이디 중복 확인이 필요합니다.");
+      return;
+    }
+
     // 이메일 형식 검증
     const emailRegex = /^\S+@\S+\.\S+$/;
     if (!emailRegex.test(email)) {
       alert("유효한 이메일 주소를 입력해주세요.");
+      return;
+    }
+
+    // 비밀번호 복잡성 검증 [비밀번호가 8자 이상이고, 대문자, 소문자, 숫자, 특수문자를 모두 포함]
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if (!passwordRegex.test(password)) {
+      alert(
+        "비밀번호는 8자 이상이어야 하며, 대문자, 소문자, 숫자, 특수문자를 모두 포함해야 합니다."
+      );
       return;
     }
 
@@ -47,7 +87,7 @@ document
     };
 
     // 백엔드에 데이터 전송
-    fetch("/users/sign-in", {
+    fetch("https://kdt-sw-7-team02.elicecoding.com/users/join", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

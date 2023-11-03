@@ -34,7 +34,7 @@
           <div>
             <input
               type="name"
-              class="form-control text-base text-left font-bold text-[#767676] w-[448px] h-[58px] gap-2.5 p-[11px] rounded border border-[#ebebeb]"
+              class="form-control text-base text-left font-bold text-[#767676] w-[440] h-[58px] gap-2.5 p-[11px] rounded border border-[#ebebeb]"
               id="sign-up-name"
               placeholder="이름"
             />
@@ -50,13 +50,20 @@
             </span>
           </p>
           <!-- 아이디 입력 창  -->
-          <div>
+          <div class="flex">
             <input
               type="id"
-              class="form-control text-base text-left font-bold text-[#767676] w-[448px] h-[58px] gap-2.5 p-[11px] rounded border border-[#ebebeb]"
+              class="form-control text-base text-left font-bold text-[#767676] w-[348px] h-[58px] gap-2.5 p-[11px] rounded border border-[#ebebeb]"
               id="sign-up-id"
               placeholder="아이디"
             />
+            <button
+              id="checkId"
+              type="button"
+              class="w-[100px] h-[58px] bg-[#ff7675] text-sm font-bold text-center rounded text-white"
+            >
+              중복확인
+            </button>
           </div>
           <!-- 이메일 *-->
           <p class="w-[62px] h-[21px] font-bold text-left mt-3 mb-3">
@@ -72,7 +79,7 @@
           <div>
             <input
               type="email"
-              class="form-control text-base text-left font-bold text-[#767676] w-[448px] h-[58px] gap-2.5 p-[11px] rounded border border-[#ebebeb]"
+              class="form-control text-base text-left font-bold text-[#767676] w-[440px] h-[58px] gap-2.5 p-[11px] rounded border border-[#ebebeb]"
               id="sign-up-email"
               placeholder="이메일 주소"
             />
@@ -91,7 +98,7 @@
           <div>
             <input
               type="password"
-              class="form-control text-base text-left font-bold text-[#767676] w-[448px] h-[58px] gap-2.5 p-[11px] rounded border border-[#ebebeb]"
+              class="form-control text-base text-left font-bold text-[#767676] w-[440px] h-[58px] gap-2.5 p-[11px] rounded border border-[#ebebeb]"
               id="sign-up-password"
               placeholder="비밀번호"
             />
@@ -110,7 +117,7 @@
           <div>
             <input
               type="password"
-              class="form-control text-base text-left font-bold text-[#767676] w-[448px] h-[58px] gap-2.5 p-[11px] rounded border border-[#ebebeb]"
+              class="form-control text-base text-left font-bold text-[#767676] w-[440px] h-[58px] gap-2.5 p-[11px] rounded border border-[#ebebeb]"
               id="sign-up-password-check"
               placeholder="비밀번호 확인"
             />
@@ -129,13 +136,14 @@
             </label>
           </div>
           <button
-            class="sign-in-Button w-[446px] h-[61px] mt-2 rounded-2xl bg-[#ff7675] text-sm font-bold text-center text-white"
+            class="sign-up-Button w-[440px] h-[61px] mt-2 rounded-2xl bg-[#ff7675] text-sm font-bold text-center text-white"
             type="submit"
           >
             동의하고 가입하기
           </button>
         </form>
-
+        
+        <!-- 가입 버튼 id 체크 필요 -> 코드 컨벤션 문제 -->
 
       <!-- 개인정보제공 동의 텍스트 (임시 삭제 예정 [링크 필요])-->
       <p
