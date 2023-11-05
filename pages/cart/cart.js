@@ -1,3 +1,9 @@
+// 추가해야할 것
+// 1. 상품 수량 변경
+// 2. 에러처리 -> 대표적으로 상품 담는 객체 파트에서 콘솔로 출력해두게 했음, 후에 사용자가 볼 수 있게 변경할 것
+// 3. 백엔드와 연결을 위해 비동기 처리로 AJAX와 같은것으로 연결 고려
+// 4. 현재 상품 이름, 이미지, 가격, 배송비, 수량만 고려 - 상품 id , 옵션, 판매자 정보 등등
+
 //장바구니 기능
 let cart = [];
 
@@ -39,6 +45,18 @@ function removeFromCart(itemName) {
   if (cart.length !== initialCartLength) {
     renderCart();
   }
+}
+
+// 장바구니 상품 수량 변경 함수 [임시이며 따로 버튼도 연결해야함]
+function changeQuantity(itemName, quantity) {
+  const item = cart.find(cartItem => cartItem.name === itemName);
+
+  if (item) {
+    item.quantity = quantity;
+  }
+
+  // 장바구니를 다시 렌더링
+  renderCart();
 }
 
 //장바구니 상품 목록 렌더링
