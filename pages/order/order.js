@@ -1,6 +1,8 @@
 import * as storage from "../utils/storage";
 import * as api from "../utils/api";
 
+const DELIVERY = 3000;
+
 //user정보는 보안상 이때 가져와야겠지? 임시데이터 구매자정보
 const user = {
   name: "김진수",
@@ -34,20 +36,33 @@ payButtonEl.addEventListener("click", clickPayButtonEvent);
 
 function getPayInfo() {
   // web storage에 저장된 장바구니 정보
-  const cart = storage.getItem("cart");
-  let payName = "";
+  const urlParams = new URLSearchParams(window.location.search);
+  const buyNow = urlParams.get("buyNow");
+  console.log(buyNow);
+  if (buyNow !== "true") {
+    const cart = storage.getItem("cart");
+    let payName = "";
 
-  if (cart.length > 1) {
-    payName = `${cart[0].name} 외 ${cart.length - 1}종`;
+    if (cart.length > 1) {
+      payName = `${cart[0].productName} 외 ${cart.length - 1}종`;
+    } else {
+      payName = cart[0].productName;
+    }
+
+    const totalPrice =
+      cart.reduce((acc, el) => (acc += el.price * el.amount), 0) + DELIVERY;
+    return {
+      name: payName,
+      totalPrice: totalPrice.toLocaleString(),
+    };
   } else {
-    payName = cart[0].name;
+    const prod = storage.getItem("buyNow");
+    console.log(prod);
+    return {
+      name: prod.productName,
+      totalPrice: (prod.price * prod.amount).toLocaleString(),
+    };
   }
-
-  const totalPrice = cart.reduce((acc, el) => (acc += el.price), 0);
-  return {
-    name: payName,
-    totalPrice: totalPrice.toLocaleString(),
-  };
 }
 
 async function clickPayButtonEvent(e) {
