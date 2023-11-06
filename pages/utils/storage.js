@@ -13,6 +13,38 @@ export const getItem = (key) => {
   }
 };
 
+export const updateCart = (productId, details) => {
+  let storedCart = getItem("cart");
+
+  if (storedCart === null) {
+    setItem("cart", [
+      {
+        productName: details.productName,
+        productId: productId,
+        productImg: details.productImg,
+        price: details.price,
+        amount: Number(details.amount),
+      },
+    ]);
+    return;
+  }
+
+  const idx = storedCart.findIndex((item) => item.productId === productId);
+
+  if (idx !== -1) {
+    storedCart[idx].amount += Number(details.amount);
+  } else {
+    storedCart.push({
+      productName: details.productName,
+      productId: productId,
+      productImg: details.productImg,
+      price: details.price,
+      amount: Number(details.amount),
+    });
+  }
+  setItem("cart", storedCart);
+};
+
 export const removeItem = (key) => {
   localStorage.removeItem(key);
 };

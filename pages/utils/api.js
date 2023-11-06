@@ -5,6 +5,7 @@ export const sendPost = async (url, objData) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        token: localStorage.getItem("token"),
       },
       body: JSON.stringify(objData),
     });
@@ -31,10 +32,10 @@ const createQueryString = (params) => {
     .join("&");
 };
 
-export const sendGet = async (url, getData) => {
+export const sendGet = async (url, queryData) => {
   try {
     //const queryString = createQueryString(objData);
-    const response = await fetch(`${url}/${getData}`, {
+    const response = await fetch(`${url}/${queryData}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

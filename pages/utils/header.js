@@ -8,7 +8,7 @@ document.querySelector("#header").innerHTML = `
         <div class="header w-full h-[170px]">
       <div class="head flex justify-between px-20 pt-5">
         <div>
-          <a href="#">
+          <a href="../main/">
             <img class="w-40" src="${logo}" alt="logo" />
           </a>
         </div>
