@@ -33,13 +33,21 @@
           />
         </div>
 
-        <button href="#" onclick="location.href='../login/'">
+        <button
+          class="header-logout hidden"
+          href="#"
+          onclick="location.href='../login/'"
+        >
           <img
             class="headerLoginButton mt-3"
             src="/imgs/login_button.png"
             alt="login"
           />
         </button>
+        <div class="header-login mt-3">
+          <a>로그아웃</a> <a class="mx-3" href="../order-list/">마이페이지</a>
+          <a><i class="fa-solid fa-bag-shopping"></i></a>
+        </div>
       </div>
       <div>
         <nav class="navbar group dropdown" style="list-style: none">

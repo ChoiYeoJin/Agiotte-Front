@@ -9,7 +9,12 @@ async function clickLoginButton(e) {
   e.preventDefault();
   const email = document.querySelector("#emailInput").value;
   const password = document.querySelector("#passwordInput").value;
-  const response = await api.sendPost("/users/login", {
+
+  storage.setItem("token", "test");
+  console.log(storage.getItem("token"));
+
+  //나중에 연결되고 사용
+  /*const response = await api.sendPost("/users/login", {
     email: email,
     password: password,
   });
@@ -24,4 +29,5 @@ async function clickLoginButton(e) {
   } else {
     alert(`${status} 아이디 또는 비밀번호가 틀립니다.`);
   }
+  */
 }
