@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script
+      src="https://kit.fontawesome.com/49219009a3.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div id="header"></div>
+    <div class="px-40 lg:px-30 mt-20">
+      <div class="flex justify-center">
+        <div class="side-menu basis-1/4 px-10 py-10">
+          <div class="mb-5 text-xl">마이페이지</div>
+          <a href="#" class="block mb-2 px-1 text-[#FF8C85] font-bold"
+            >주문조회/현황</a
+          >
+          <a href="../change-info/" class="px-1">회원정보 변경</a>
+        </div>
+        <div class="list-box basis-3/4">
+          <div class="text-center text-xl mt-10">주문조회/현황</div>
+          <div class="max-w-8xl border border-gray-400 mt-6"></div>
+          <p class="text-xl my-5 font-bold">주문내역</p>
+
+          <div
+            class="list-header h-[53px] bg-[#fbfbfb] shadow-md grid grid-cols-4 px-4 py-2"
+          >
+            <p>주문일자(주문번호)</p>
+            <p>상품</p>
+            <p>주문금액</p>
+            <p>주문상태</p>
+          </div>
+          <div class="list-main mt-5 h-[150px] shadow-md grid grid-cols-4 px-4">
+            <div class="order-date flex items-center">2020.20.20</div>
+            <div class="order-product flex items-center">
+              <div class="">
+                <img
+                  class="w-[80px] h-[120px] rounded-[5px] object-cover"
+                  src="/imgs/test2.jpg"
+                  alt=""
+                />
+              </div>
+              <div class="ml-2">원숭이 인형</div>
+            </div>
+            <div class="order-total flex items-center">1,000원</div>
+            <div class="order-state flex items-center">결제</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<script type="module" src="../utils/header.js"></script>

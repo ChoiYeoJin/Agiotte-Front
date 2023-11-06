@@ -22,13 +22,21 @@ document.querySelector("#header").innerHTML = `
           />
         </div>
 
-        <button href="#" onclick="location.href='../login/'">
+        <button
+          class="header-logout hidden"
+          href="#"
+          onclick="location.href='../login/'"
+        >
           <img
             class="headerLoginButton mt-3"
             src="${loginButton}"
             alt="login"
           />
         </button>
+        <div class="header-login mt-3">
+          <a class="logout cursor-pointer">로그아웃</a> <a class="mx-3" href="../order-list/">마이페이지</a>
+          <a><i class="fa-solid fa-bag-shopping"></i></a>
+        </div>
       </div>
             <div>
         <nav class="navbar group dropdown" style="list-style: none">
@@ -89,3 +97,15 @@ document.querySelector("#header").innerHTML = `
       </div>
     </div>
 `;
+
+const logoutEl = document.querySelector(".logout");
+const logoutHeaderEl = document.querySelector(".header-logout");
+const loginHeaderEl = document.querySelector(".header-login");
+
+const clickLogoutEvent = () => {
+  localStorage.removeItem("token");
+  logoutHeaderEl.classList.remove("hidden");
+  loginHeaderEl.classList.add("hidden");
+  alert("로그아웃 되었습니다!");
+};
+logoutEl.addEventListener("click", clickLogoutEvent);
