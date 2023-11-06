@@ -31,10 +31,10 @@ const createQueryString = (params) => {
     .join("&");
 };
 
-export const sendGet = async (url, objData) => {
+export const sendGet = async (url, getData) => {
   try {
-    const queryString = createQueryString(objData);
-    const response = await fetch(`${url}?${queryString}`, {
+    //const queryString = createQueryString(objData);
+    const response = await fetch(`${url}/${getData}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

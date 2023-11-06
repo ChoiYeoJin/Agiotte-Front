@@ -5,24 +5,42 @@ import { getCardHTML } from "../utils/card";
 
 //일단 없으니까 그냥 가져온셈 침
 const cards = [
-  { price: 30000, name: "여아 신발", img: "test1.jpg", tag: "good" },
-  { price: 30000, name: "원숭이 인형", img: "test2.jpg", tag: "new" },
-  { price: 30000, name: "여아 신발", img: "test1.jpg", tag: "good" },
-  { price: 40000, name: "원숭이 인형", img: "test2.jpg", tag: "new" },
-  { price: 30000, name: "여아 신발", img: "test1.jpg", tag: "new" },
-  { price: 40000, name: "원숭이 인형", img: "test2.jpg", tag: "good" },
-  { price: 30000, name: "여아 신발", img: "test1.jpg", tag: "normal" },
-  { price: 40000, name: "원숭이 인형", img: "test2.jpg", tag: "normal" },
-  { price: 30000, name: "여아 신발", img: "test1.jpg", tag: "normal" },
-  { price: 40000, name: "원숭이 인형", img: "test2.jpg", tag: "normal" },
-  { price: 30000, name: "여아 신발", img: "test1.jpg", tag: "good" },
-  { price: 40000, name: "원숭이 인형", img: "test2.jpg", tag: "good" },
-  { price: 30000, name: "여아 신발", img: "test1.jpg", tag: "good" },
-  { price: 40000, name: "원숭이 인형", img: "test2.jpg", tag: "good" },
-  { price: 30000, name: "여아 신발", img: "test1.jpg", tag: "good" },
-  { price: 40000, name: "원숭이 인형", img: "test2.jpg", tag: "good" },
-  { price: 30000, name: "여아 신발", img: "test1.jpg", tag: "normal" },
-  { price: 40000, name: "원숭이 인형", img: "test2.jpg", tag: "normal" },
+  { id: 11, price: 30000, name: "여아 신발", img: "test1.jpg", tag: "good" },
+  { id: 10, price: 30000, name: "원숭이 인형", img: "test2.jpg", tag: "new" },
+  { id: 11, price: 30000, name: "여아 신발", img: "test1.jpg", tag: "good" },
+  { id: 10, price: 40000, name: "원숭이 인형", img: "test2.jpg", tag: "new" },
+  { id: 11, price: 30000, name: "여아 신발", img: "test1.jpg", tag: "new" },
+  { id: 10, price: 40000, name: "원숭이 인형", img: "test2.jpg", tag: "good" },
+  { id: 11, price: 30000, name: "여아 신발", img: "test1.jpg", tag: "normal" },
+  {
+    id: 10,
+    price: 40000,
+    name: "원숭이 인형",
+    img: "test2.jpg",
+    tag: "normal",
+  },
+  { id: 11, price: 30000, name: "여아 신발", img: "test1.jpg", tag: "normal" },
+  {
+    id: 10,
+    price: 40000,
+    name: "원숭이 인형",
+    img: "test2.jpg",
+    tag: "normal",
+  },
+  { id: 11, price: 30000, name: "여아 신발", img: "test1.jpg", tag: "good" },
+  { id: 10, price: 40000, name: "원숭이 인형", img: "test2.jpg", tag: "good" },
+  { id: 11, price: 30000, name: "여아 신발", img: "test1.jpg", tag: "good" },
+  { id: 10, price: 40000, name: "원숭이 인형", img: "test2.jpg", tag: "good" },
+  { id: 11, price: 30000, name: "여아 신발", img: "test1.jpg", tag: "good" },
+  { id: 10, price: 40000, name: "원숭이 인형", img: "test2.jpg", tag: "good" },
+  { id: 11, price: 30000, name: "여아 신발", img: "test1.jpg", tag: "normal" },
+  {
+    id: 10,
+    price: 40000,
+    name: "원숭이 인형",
+    img: "test2.jpg",
+    tag: "normal",
+  },
 ];
 
 loadCards(cards);
@@ -32,10 +50,9 @@ const target = document.querySelector("#observer-target");
 
 const onIntersect = async ([entry], observer) => {
   if (entry.isIntersecting) {
-    console.log("intersected!");
     await fetchData();
     observer.unobserve(entry.target);
-    // observer.observe(entry.target);
+    observer.observe(entry.target);
   }
 };
 
@@ -48,7 +65,6 @@ const observer = new IntersectionObserver(onIntersect, options);
 observer.observe(target);
 
 const page = 1;
-let isLoading = false;
 
 //백에서 상품 리스트 페이지로 가져오는 함수
 const fetchData = async () => {
@@ -60,7 +76,7 @@ const fetchData = async () => {
   // 새로운 데이터가 있는 경우만 처리
   loadCards(cards);
   page++;
-  observer.observe(target);
+  //observer.observe(target);
   //}
 };
 
@@ -75,6 +91,7 @@ function loadCards(cards) {
 
   cards.forEach((item) => {
     cardFrame.innerHTML += getCardHTML(
+      item.id,
       item.name,
       item.price,
       item.img,
