@@ -3,8 +3,8 @@ const HEADER = {
   "Content-Type": "application/json",
 };
 
-const loginButton = document.querySelector(".loginButton");
-loginButton.addEventListener("click", clickLoginButton);
+const loginButtonEl = document.querySelector(".login-button");
+loginButtonEl.addEventListener("click", clickLoginButton);
 
 function clickLoginButton(e) {
   e.preventDefault();

@@ -1,4 +1,4 @@
-//TODO: 돋보기 아이콘 넣기, 페이지 나오면 링크 넣기
+//TODO: 카테고리 api로 가져와서 적용되도록 해야함
 //
 import "../index.css";
 import logo from "/imgs/logo.png";
@@ -30,11 +30,11 @@ document.querySelector("#header").innerHTML = `
           />
         </button>
       </div>
-      <div>
+            <div>
         <nav class="navbar group dropdown" style="list-style: none">
           <div class="flex space-x-7 pt-10 pl-20">
             <li class="relative tracking-wide">
-              <a class="text-lg leading-tight" href="#"
+              <a class="text-lg leading-tight" href="../list/"
                 ><span
                   class="link link-underline link-underline-black m-1 text-black"
                   >유아의류</span
@@ -43,7 +43,7 @@ document.querySelector("#header").innerHTML = `
             </li>
 
             <li>
-              <a class="text-lg leading-tight" href="#"
+              <a class="text-lg leading-tight" href="../list/"
                 ><span
                   class="link link-underline link-underline-black m-1 text-black"
                   >유아용품</span
@@ -51,7 +51,7 @@ document.querySelector("#header").innerHTML = `
               >
             </li>
             <li>
-              <a class="text-lg leading-tight" href="#"
+              <a class="text-lg leading-tight" href="../list/"
                 ><span
                   class="link link-underline link-underline-black m-1 text-black"
                   >가구</span
@@ -59,7 +59,7 @@ document.querySelector("#header").innerHTML = `
               >
             </li>
             <li>
-              <a class="text-lg leading-tight" href="#"
+              <a class="text-lg leading-tight" href="../list/"
                 ><span
                   class="link link-underline link-underline-black m-1 text-black"
                   >기타</span
@@ -73,15 +73,15 @@ document.querySelector("#header").innerHTML = `
           >
             <div class="bg-white flex space-x-10 pt-5 pl-20">
               <div>
-                <div><a class="block" href="#">여아의류</a></div>
+                <div><a class="block" href="../list/">여아의류</a></div>
                 <div><a class="block mt-2" href="#">남아의류</a></div>
               </div>
               <div>
-                <div><a class="block" href="#">유아용품</a></div>
-                <div><a class="block mt-2" href="#">장난감</a></div>
-                <div><a class="block mt-2" href="#">청결용품</a></div>
-                <div><a class="block mt-2" href="#">안전용품</a></div>
-                <div><a class="block mt-2" href="#">잡화</a></div>
+                <div><a class="block" href="../list/">유아용품</a></div>
+                <div><a class="block mt-2" href="../list/">장난감</a></div>
+                <div><a class="block mt-2" href="../list/">청결용품</a></div>
+                <div><a class="block mt-2" href="../list/">안전용품</a></div>
+                <div><a class="block mt-2" href="../list/">잡화</a></div>
               </div>
             </div>
           </div>
