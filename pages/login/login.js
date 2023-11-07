@@ -14,16 +14,16 @@ async function clickLoginButton(e) {
   const email = document.querySelector("#emailInput").value;
   const password = document.querySelector("#passwordInput").value;
 
-  storage.setItem("token", "test");
-  console.log(storage.getItem("token"));
-
   //일단은 백엔드 보내는 부분은 제외해주세요.
   const response = await api.sendPost("/users/login", {
-    email: email,
-    password: password,
+    UserId: email,
+    HashPwd: password,
   });
 
-  const status = response.status;
+  if(response !== undefined) {
+
+  }
+
 }
 
 const signupButtonEl = document.querySelector(".signup-button");
