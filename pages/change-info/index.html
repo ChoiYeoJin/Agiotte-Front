@@ -29,30 +29,34 @@
           <div class="text-center text-xl mt-10">회원정보 변경/탈퇴</div>
           <div class="max-w-8xl border border-gray-400 mt-6"></div>
           <div class="flex flex-col justify-center items-center space-y-4 mt-4">
-            <div class="bg-gray-200 w-[550px] h-[50px] text-lg px-2 py-2">
+            <div
+              class="member-name bg-gray-200 w-[550px] h-[50px] text-lg px-2 py-2"
+            >
               회원 이름
             </div>
-            <div class="bg-gray-200 w-[550px] h-[50px] text-lg px-2 py-2">
+            <div
+              class="member-id bg-gray-200 w-[550px] h-[50px] text-lg px-2 py-2"
+            >
               회원 아이디
             </div>
             <input
-              class="border border-gray-300 w-[550px] h-[50px] rounded-sm px-2"
+              class="input-pass border border-gray-300 w-[550px] h-[50px] rounded-sm px-2"
               type="text"
               placeholder="비밀번호"
             />
             <input
-              class="border border-gray-300 w-[550px] h-[50px] rounded-sm px-2"
+              class="input-pass-check border border-gray-300 w-[550px] h-[50px] rounded-sm px-2"
               type="text"
               placeholder="비밀번호 확인"
             />
             <input
-              class="border border-gray-300 w-[550px] h-[50px] rounded-sm px-2"
-              type="text"
+              class="input-email border border-gray-300 w-[550px] h-[50px] rounded-sm px-2"
+              type="email"
               placeholder="이메일"
             />
             <div class="relative">
               <input
-                class="border border-gray-300 w-[550px] h-[50px] rounded-sm px-2"
+                class="input-zip border border-gray-300 w-[550px] h-[50px] rounded-sm px-2"
                 type="text"
                 placeholder="우편번호"
               />
@@ -63,16 +67,19 @@
               </p>
             </div>
             <input
-              class="border border-gray-300 w-[550px] h-[50px] rounded-sm px-2"
+              class="input-detail-addr border border-gray-300 w-[550px] h-[50px] rounded-sm px-2"
               type="text"
               placeholder="상세주소"
             />
             <p
-              class="rounded-lg px-4 py-1 bg-[#FF8C85] text-white text-xl cursor-pointer"
+              class="modify-button rounded-lg px-4 py-1 bg-[#FF8C85] text-white text-xl cursor-pointer"
             >
               수정
             </p>
           </div>
+          <p class="withdraw-button flex justify-end mx-[20rem] cursor-pointer">
+            회원탈퇴
+          </p>
         </div>
       </div>
     </div>
