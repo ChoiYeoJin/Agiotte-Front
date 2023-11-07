@@ -25,3 +25,7 @@ async function clickLoginButton(e) {
     return false;
   }
 
+  // 비밀번호가 맞을 경우, 변경 완료 → 백엔드에 전달
+  
+
+
