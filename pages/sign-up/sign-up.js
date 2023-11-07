@@ -1,4 +1,3 @@
-import axios from "axios";
 // import {checkEmail} from "/js/commonRegex.js";
 // import {checkPassword} from "/js/commonRegex.js";
 // import {runFakeApi} from "/js/api.js";
@@ -21,22 +20,26 @@ const checkId = () => {
   isIdAvailable = true;
 
   //아래 주석은 훗날 api 나올때 사용
-  // axios
-  //     .post(`https://kdt-sw-7-team02.elicecoding.com/users/${userId}`, {
-  //         id: userId,
-  //     })
-  //     .then(function (response) {
-  //         if (response.data.isDuplicated) {
-  //             alert("이미 사용중인 아이디입니다.");
-  //             isIdAvailable = false;
-  //         } else {
-  //             alert("사용 가능한 아이디입니다.");
-  //             isIdAvailable = true;
-  //         }
-  //     })
-  //     .catch(function (error) {
-  //         console.log(error);
-  //     });
+  // fetch(`https://kdt-sw-7-team02.elicecoding.com/users/${userId}`, {
+  //   method: 'POST',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   },
+  //   body: JSON.stringify({
+  //     id: userId,
+  //   }),
+  // })
+  // .then(response => response.json())
+  // .then(data => {
+  //   if (data.isDuplicated) {
+  //     alert("이미 사용중인 아이디입니다.");
+  //     isIdAvailable = false;
+  //   } else {
+  //     alert("사용 가능한 아이디입니다.");
+  //     isIdAvailable = true;
+  //   }
+  // })
+  // .catch(error => console.log(error));
 };
 
 const registerUser = e => {
