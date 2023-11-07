@@ -35,7 +35,7 @@ document.querySelector("#header").innerHTML = `
         </button>
         <div class="header-login mt-3">
           <a class="logout cursor-pointer">로그아웃</a> <a class="mx-3" href="../order-list/">마이페이지</a>
-          <a><i class="fa-solid fa-bag-shopping"></i></a>
+          <a href="../cart/"><i class="fa-solid fa-bag-shopping"></i></a>
         </div>
       </div>
             <div>

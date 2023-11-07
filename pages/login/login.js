@@ -25,3 +25,8 @@ async function clickLoginButton(e) {
 
   const status = response.status;
 }
+
+const signupButtonEl = documnet.querySelector(".signup-button");
+signupButtonEl.addEventListener("click", (e) => {
+  location.href = "../sign-up/";
+});
