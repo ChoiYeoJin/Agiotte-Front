@@ -31,31 +31,18 @@
           <p class="text-xl my-5 font-bold">주문내역</p>
 
           <div
-            class="list-header h-[53px] bg-[#fbfbfb] shadow-md grid grid-cols-4 px-4 py-2"
+            class="list-header h-[53px] bg-[#fbfbfb] shadow-md grid grid-cols-5 px-4 py-2"
           >
             <p>주문일자(주문번호)</p>
             <p>상품</p>
             <p>주문금액</p>
             <p>주문상태</p>
           </div>
-          <div class="list-main mt-5 h-[150px] shadow-md grid grid-cols-4 px-4">
-            <div class="order-date flex items-center">2020.20.20</div>
-            <div class="order-product flex items-center">
-              <div class="">
-                <img
-                  class="w-[80px] h-[120px] rounded-[5px] object-cover"
-                  src="/imgs/test2.jpg"
-                  alt=""
-                />
-              </div>
-              <div class="ml-2">원숭이 인형</div>
-            </div>
-            <div class="order-total flex items-center">1,000원</div>
-            <div class="order-state flex items-center">결제</div>
-          </div>
+          <div class="card-box mb-20"></div>
         </div>
       </div>
     </div>
   </body>
 </html>
 <script type="module" src="../utils/header.js"></script>
+<script type="module" src="./order-list.js"></script>

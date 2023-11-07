@@ -8,6 +8,7 @@ const productId = Number(urlParams.get("id"));
 const details = await fetchDetails(productId);
 
 const imgEl = document.querySelector(".main-img");
+const subImgEls = document.querySelectorAll(".sub-img");
 const subjectEl = document.querySelector(".subject");
 const tagEl = document.querySelector(".tag-box");
 const priceEl = document.querySelector(".price");
@@ -17,7 +18,16 @@ const detailInfoEl = document.querySelector(".detail-info");
 
 const localePrice = Number(details.price).toLocaleString();
 
-imgEl.setAttribute("src", details.productImg);
+const imgs = details.productImg;
+//img가 없는 경우??
+imgEl.setAttribute("src", imgs[0]);
+for (let i = 0; i < imgs.length; i++) {
+  subImgEls[i].setAttribute("src", imgs[i]);
+  subImgEls[i].addEventListener("click", (e) => {
+    imgEl.setAttribute("src", e.target.getAttribute("src"));
+  });
+}
+
 subjectEl.innerText = details.productName;
 tagEl.innerHTML = getTagHTML(details.condition);
 priceEl.innerText = localePrice + "원";
@@ -57,7 +67,7 @@ async function fetchDetails(id) {
   //const details = await api.sendGet(`/products/${id}`)
   const details = {
     productName: "귀여운 원숭이 인형 팝니다",
-    productImg: "/imgs/test2.jpg",
+    productImg: ["/imgs/test2.jpg", "/imgs/carrot.png"],
     detail: `-상품 사이즈- 길이30cm 상태 깨끗합니다. 귀여운 원숭이 인형을 판매합니다. 이 원숭이 인형은 부드럽고 털실로 만들어져 있어 안심하고 안아주기 좋습니다. 사랑스러운 디자인과 다양한 색상으로 아이들과 함께 놀기에 완벽합니다.`,
     condition: "새상품",
     price: 40000,
@@ -74,7 +84,6 @@ function changeQuantityEvent(e) {
 
 //storage.clear();
 function clickCartButtonEvent(e) {
-  //web storage에 저장 첫 카트 아이템인경우 null체크
   storage.updateCart(productId, {
     productName: details.productName,
     productId: productId,
@@ -96,4 +105,17 @@ function clickBuyButtonEvent(e) {
     amount: Number(selectEl.value),
   });
   location.href = "../order/?buyNow=true";
+}
+
+function clickSubImages() {
+  // 모든 서브 이미지 요소 선택
+  const subImages = document.querySelectorAll(".subImage");
+
+  // 각 서브 이미지에 클릭 이벤트 리스너 추가
+  subImages.forEach((img) => {
+    img.addEventListener("click", function () {
+      // 메인 이미지의 src 속성을 클릭된 이미지의 src로 변경
+      document.getElementById("main-image").src = this.src;
+    });
+  });
 }
