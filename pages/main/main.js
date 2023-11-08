@@ -1,6 +1,7 @@
 //서버에서 card 불러오기
 
 import { getCardHTML } from "../utils/card";
+import * as api from "../utils/api";
 
 //일단 없으니까 그냥 가져온셈 침
 const cards = [
@@ -42,10 +43,10 @@ const cards = [
   },
 ];
 
-initMain();
+await initMain();
 const cardElements = document.querySelectorAll(".card");
 
-function initMain() {
+async function initMain() {
   const cardBox = document.querySelector(".card-box");
 
   const cardFrame = document.createElement("div");
@@ -54,6 +55,7 @@ function initMain() {
   cardFrame.classList.add("space-x-5");
   cardFrame.classList.add("justify-center");
 
+  api.sendGet("/categories/", "main");
   cards.forEach((item) => {
     cardFrame.innerHTML += getCardHTML(
       item.id,

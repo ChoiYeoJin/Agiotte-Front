@@ -16,7 +16,7 @@
     ></script>
   </head>
   <body>
-    <div class="header w-full h-[50px] lg:h-[170px]">
+    <div class="header w-full h-[60px] lg:h-[170px]">
       <div class="head flex justify-between px-20 pt-5">
         <div class="hidden lg:block">
           <a href="../main/">
@@ -50,8 +50,14 @@
             <a href="../cart/"><i class="fa-solid fa-bag-shopping"></i></a>
           </div>
         </div>
-        <div class="mobile-header block lg:hidden flex flex-auto">
-          <div class="search-bar"><input class="" type="text" /></div>
+        <div class="mobile-header flex lg:hidden items-center">
+          <div class="search-bar flex-grow">
+            <input
+              class="w-full px-4 py-1 border border-gray-300 rounded-lg"
+              type="text"
+              placeholder=""
+            />
+          </div>
 
           <i class="fa-solid fa-magnifying-glass mx-2 text-xl"></i>
           <i class="fa-regular fa-user mx-2 text-xl"></i>
@@ -113,6 +119,36 @@
             </div>
           </div>
         </nav>
+      </div>
+      <div class="w-full h-[200px] bg-white absolute pt-3 pl-2 z-10">
+        <div class="bg-white pt-5 pl-20">
+          <div>
+            <div>
+              <a class="block mt-2 text-xl font-semibold" href="../list/"
+                >유아의류</a
+              >
+            </div>
+            <div><a class="block ml-2" href="../list/">여아의류</a></div>
+            <div><a class="block mt-2 ml-2" href="#">남아의류</a></div>
+          </div>
+          <div>
+            <div>
+              <a class="block mt-2 text-xl font-semibold" href="../list/"
+                >유아용품</a
+              >
+            </div>
+            <div><a class="block mt-2 ml-2" href="../list/">장난감</a></div>
+            <div><a class="block mt-2 ml-2" href="../list/">청결용품</a></div>
+            <div><a class="block mt-2 ml-2" href="../list/">안전용품</a></div>
+            <div><a class="block mt-2 ml-2" href="../list/">잡화</a></div>
+          </div>
+          <div>
+            <a class="block mt-2 text-xl font-semibold" href="../list/">가구</a>
+          </div>
+          <div>
+            <a class="block mt-2 text-xl font-semibold" href="../list/">기타</a>
+          </div>
+        </div>
       </div>
     </div>
     <div class="w-[1000pc] h-[300px] bg-sky-700"></div>

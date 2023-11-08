@@ -3,6 +3,7 @@
 import "../index.css";
 import logo from "/imgs/logo.png";
 import loginButton from "/imgs/login_button.png";
+import * as storage from "../utils/storage";
 
 document.querySelector("#header").innerHTML = `
         <div class="header w-full h-[170px]">
@@ -98,14 +99,26 @@ document.querySelector("#header").innerHTML = `
     </div>
 `;
 
+const token = storage.getItem("token");
+
 const logoutEl = document.querySelector(".logout");
 const logoutHeaderEl = document.querySelector(".header-logout");
 const loginHeaderEl = document.querySelector(".header-login");
 
+if (token === null) {
+  //logout상태
+  logoutHeaderEl.classList.remove("hidden");
+  loginHeaderEl.classList.add("hidden");
+} else {
+  logoutHeaderEl.classList.add("hidden");
+  loginHeaderEl.classList.remove("hidden");
+}
+
 const clickLogoutEvent = () => {
-  localStorage.removeItem("token");
+  storage.removeItem("token");
   logoutHeaderEl.classList.remove("hidden");
   loginHeaderEl.classList.add("hidden");
   alert("로그아웃 되었습니다!");
 };
+
 logoutEl.addEventListener("click", clickLogoutEvent);
