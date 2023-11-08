@@ -1,65 +1,64 @@
+import * as api from "../utils/api"
+import * as storage from "../utils/storage"
 
+const API_URL = 'http://kdt-sw-7-team02.elicecoding.com:3000/images/bmo1.gif';
 
-// 등록된 정보가 없거나 같을 경우
-const HEADER = {
-    "Content-Type": "application/json",
-  };
-  
-  const loginButton = document.querySelector(".loginButton");
-  loginButton.addEventListener("click", clickLoginButton);
-  
-  function clickLoginButton(e) {
+const findButtonEl = document.querySelector(".findButton");
+findButtonEl.addEventListener("click", clickfindButton);
 
-    // 내가 작성한 것에 맞게 이름, 이메일 # 수정하기
-    const email = document.querySelector("#emailInput").value;
-    const password = document.querySelector("#passwordInput").value;
-  
-    alert(email + password);
-    fetch("/users/login", {
-      method: "POST",
-      headers: HEADER,
-      body: JSON.stringify({
-        email: email,
-        password: password,
-      }),
+const emailRegexp = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
+const checkEmailValid = (targetEmail) => {
+    return emailRegexp.test(targetEmail);
+}
 
-    }).then((res) => {
-      const status = res.status;
-      if (status === 200) {
-        alert("회원님의 아이디는 ooo 입니다");
-      } else {
-        alert(`${status} 아이디 또는 이메일이 틀립니다.`);
-      }
-    });
-  }
-  
-// 입력 오류일 때
-const registerUser = (e) => {
-  e.preventDefault();
+function clickfindButton(e) {
 
-const nameEl = document.getElementById("sign-up-name");
-const emailEl = document.getElementById("sign-up-email");
-
-const name = nameEl.value;
-const email = emailEl.value;
+  const nameEl = document.querySelector("#nameInput");
+  const name = nameEl.value;
+  const emailEl = document.querySelector("#emailInput");
+  const email = emailEl.value;
 
 if (name === '') {
-  alert('이름을 입력해주세요!');
+  alert('이름을 입력해주세요.');
   nameEl.focus();
   return false;
 }
-if (!checkEmail(email)) {
-  alert('올바른 이메일 주소를 입력해주세요!');
+
+if (email === '') {
+    alert('이메일을 입력해주세요.');
+    passwordEl.focus();
+    return false;
+}
+
+if (!checkEmailValid(email)) {
+  alert('올바른 이메일 주소를 입력해주세요.');
   emailEl.focus();
   return false;
 }
-}
 
-
-// 백엔드에 보낼 데이터 객체 생성
-const data = {
-    name: name,
-    email: email,
+// API Request
+const params = {
+  "UserName": "String", 
+  "Email": "String"
 };
 
-console.log(data);
+fetch({
+  url: `${API_URL}/users/id`,
+  method: 'POST',
+  headers: {
+      "Content-Type": "application/json",
+  },
+  body: JSON.stringify(params),
+})
+.then(res => {
+  console.log(res, res.ok, res.status);
+  
+  if(res.ok) {
+    alert('회원님의 아이디는'+ String +'입니다.');
+  } else {
+    alert('이름이나 이메일이 일치하지 않습니다.');
+  }
+})
+.catch(err => console.error(err));
+// alert('등록된 정보가 없습니다')
+}
