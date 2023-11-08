@@ -1,7 +1,7 @@
 import * as api from "../utils/api"
 import * as storage from "../utils/storage"
 
-const API_URL = ' http://kdt-sw-7-team02.elicecoding.com:3000/ ';
+const API_URL = 'http://kdt-sw-7-team02.elicecoding.com:3000/images/bmo1.gif';
 
 const changeButtonEl = document.querySelector(".changeButton");
 changeButtonEl.addEventListener("click", clickchangeButton);
