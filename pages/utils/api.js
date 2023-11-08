@@ -47,7 +47,7 @@ const createQueryString = (params) => {
 
 export const sendGet = async (url, queryData) => {
   try {
-    console.log(`${url}/${queryData}`);
+    console.log(`${API_URL}${url}/${queryData}`);
     const response = await fetch(`${API_URL}${url}/${queryData}`, {
       method: "GET",
       headers: {
@@ -56,7 +56,7 @@ export const sendGet = async (url, queryData) => {
       },
     });
     console.log("response start");
-    const data = await response.text();
+    const data = await response.json();
     console.log("response end");
     if (response.ok) {
       console.log("request 성공" + data);
@@ -93,9 +93,9 @@ export const sendPut = async (url, objData) => {
   }
 };
 
-export const sendDelete = async (url) => {
+export const sendDelete = async (url, queryData) => {
   try {
-    const response = await fetch(API_URL + url, {
+    const response = await fetch(`${API_URL}${url}/${queryData}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

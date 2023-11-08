@@ -119,6 +119,7 @@ const clickLogoutEvent = () => {
   logoutHeaderEl.classList.remove("hidden");
   loginHeaderEl.classList.add("hidden");
   alert("로그아웃 되었습니다!");
+  location.href = "../main/";
 };
 
 logoutEl.addEventListener("click", clickLogoutEvent);
