@@ -17,7 +17,10 @@ async function clickLoginButton(e) {
   });
 
   if (response !== undefined) {
-    //storage.setItem("token", response.token);
+    storage.setItem("token", response.token);
+    location.href = "../main/";
+  } else {
+    alert("아이디 또는 비밀번호가 다릅니다!");
   }
 }
 
