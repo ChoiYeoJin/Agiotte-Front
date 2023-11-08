@@ -16,14 +16,14 @@
     ></script>
   </head>
   <body>
-    <div class="header w-full h-[170px]">
+    <div class="header w-full h-[50px] lg:h-[170px]">
       <div class="head flex justify-between px-20 pt-5">
-        <div>
+        <div class="hidden lg:block">
           <a href="../main/">
-            <img class="w-40" src="/imgs/logo.png" alt="logo" />
+            <img class="w-40" src="${logo}" alt="logo" />
           </a>
         </div>
-        <div class="w-[450px]">
+        <div class="hidden lg:block w-[450px]">
           <i class="fa-solid fa-magnifying-glass absolute ml-[26rem] mt-6"></i>
           <input
             class="w-full h-10 mt-3 px-2 rounded-[5px] bg-[#efefef]"
@@ -32,24 +32,32 @@
             placeholder="찾고싶은 중고물품을 검색하세요"
           />
         </div>
+        <div class="hidden lg:block">
+          <button
+            class="header-logout hidden"
+            href="#"
+            onclick="location.href='../login/'"
+          >
+            <img
+              class="headerLoginButton mt-3"
+              src="${loginButton}"
+              alt="login"
+            />
+          </button>
+          <div class="header-login mt-3">
+            <a class="logout cursor-pointer">로그아웃</a>
+            <a class="mx-3" href="../order-list/">마이페이지</a>
+            <a href="../cart/"><i class="fa-solid fa-bag-shopping"></i></a>
+          </div>
+        </div>
+        <div class="mobile-header block lg:hidden flex flex-auto">
+          <div class="search-bar"><input class="" type="text" /></div>
 
-        <button
-          class="header-logout hidden"
-          href="#"
-          onclick="location.href='../login/'"
-        >
-          <img
-            class="headerLoginButton mt-3"
-            src="/imgs/login_button.png"
-            alt="login"
-          />
-        </button>
-        <div class="header-login mt-3">
-          <a>로그아웃</a> <a class="mx-3" href="../order-list/">마이페이지</a>
-          <a><i class="fa-solid fa-bag-shopping"></i></a>
+          <i class="fa-solid fa-magnifying-glass mx-2 text-xl"></i>
+          <i class="fa-regular fa-user mx-2 text-xl"></i>
         </div>
       </div>
-      <div>
+      <div class="hidden lg:block">
         <nav class="navbar group dropdown" style="list-style: none">
           <div class="flex space-x-7 pt-10 pl-20">
             <li class="relative tracking-wide">
