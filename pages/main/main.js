@@ -55,7 +55,9 @@ async function initMain() {
   cardFrame.classList.add("space-x-5");
   cardFrame.classList.add("justify-center");
 
-  api.sendGet("/categories/", "main");
+  const data = await api.sendGet("/categories/products", "boy");
+  console.log(data);
+
   cards.forEach((item) => {
     cardFrame.innerHTML += getCardHTML(
       item.id,

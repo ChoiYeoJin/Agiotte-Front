@@ -47,31 +47,31 @@ const createQueryString = (params) => {
 
 export const sendGet = async (url, queryData) => {
   try {
-    //const queryString = createQueryString(objData);
-    const response = await fetch(`${url}/${queryData}`, {
+    console.log(`${url}/${queryData}`);
+    const response = await fetch(`${API_URL}${url}/${queryData}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
         token: localStorage.getItem("token"),
       },
     });
-
-    const data = await response.json();
-
+    console.log("response start");
+    const data = await response.text();
+    console.log("response end");
     if (response.ok) {
       console.log("request 성공" + data);
       return data;
     } else {
-      console.log("실패");
+      console.log("실패" + data);
     }
   } catch (error) {
-    console.error(`${url} 오류발생 ${error}`);
+    console.error(`${url}/${queryData} 오류발생 ${error}`);
   }
 };
 
 export const sendPut = async (url, objData) => {
   try {
-    const response = await fetch(url, {
+    const response = await fetch(`${API_URL}${url}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -95,7 +95,7 @@ export const sendPut = async (url, objData) => {
 
 export const sendDelete = async (url) => {
   try {
-    const response = await fetch(url, {
+    const response = await fetch(API_URL + url, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
