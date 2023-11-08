@@ -1,19 +1,19 @@
 //TODO: header에 토큰정보 추가해야함
 
 // http://kdt-sw-7-team02.elicecoding.com
-const API_URL = 'http://localhost:3000';
+const API_URL = "http://kdt-sw-7-team02.elicecoding.com:3000";
 export const sendPost = async (url, objData) => {
   try {
     let headers = {};
-    if(url === '/users/login') {
+    if (url === "/users/login") {
       headers = {
-        "Content-Type": "application/json"
-      }
+        "Content-Type": "application/json",
+      };
     } else {
       headers = {
         "Content-Type": "application/json",
         token: localStorage.getItem("token"),
-      }
+      };
     }
 
     const response = await fetch(`${API_URL}${url}`, {

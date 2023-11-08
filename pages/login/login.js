@@ -20,10 +20,9 @@ async function clickLoginButton(e) {
     HashPwd: password,
   });
 
-  if(response !== undefined) {
-
+  console.log(response);
+  if (response !== undefined) {
   }
-
 }
 
 const signupButtonEl = document.querySelector(".signup-button");
