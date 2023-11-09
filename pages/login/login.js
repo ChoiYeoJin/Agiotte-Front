@@ -6,7 +6,6 @@ const loginButtonEl = document.querySelector(".login-button");
 loginButtonEl.addEventListener("click", clickLoginButton);
 
 async function clickLoginButton(e) {
-  //5. 지정한 input element에서 .value로 입력상태의 데이터를 가져온다
   const email = document.querySelector("#emailInput").value;
   const password = document.querySelector("#passwordInput").value;
 
@@ -17,11 +16,15 @@ async function clickLoginButton(e) {
   });
 
   if (response !== undefined) {
-    //storage.setItem("token", response.token);
+    storage.setItem("token", response.token);
+    storage.setItem("user-id", email);
+    location.href = "/main/";
+  } else {
+    alert("아이디 또는 비밀번호가 다릅니다!");
   }
 }
 
 const signupButtonEl = document.querySelector(".signup-button");
 signupButtonEl.addEventListener("click", (e) => {
-  location.href = "../sign-up/";
+  location.href = "/sign-up/";
 });

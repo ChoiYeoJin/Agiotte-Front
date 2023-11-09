@@ -1,7 +1,8 @@
 //TODO: header에 토큰정보 추가해야함
 
 // http://kdt-sw-7-team02.elicecoding.com
-const API_URL = "http://kdt-sw-7-team02.elicecoding.com:3000";
+export const API_URL = "http://kdt-sw-7-team02.elicecoding.com/api";
+export const IMG_URL = API_URL + "/images/";
 export const sendPost = async (url, objData) => {
   try {
     let headers = {};
@@ -45,14 +46,53 @@ const createQueryString = (params) => {
     .join("&");
 };
 
-export const sendGet = async (url, queryData) => {
+export const sendGetWithQuery = async (url, objData) => {
   try {
-    //const queryString = createQueryString(objData);
-    const response = await fetch(`${url}/${queryData}`, {
+    const response = await fetch(
+      `${API_URL}${url}?${createQueryString(objData)}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          token: localStorage.getItem("token"),
+        },
+      }
+    );
+
+    const data = await response.json();
+
+    if (response.ok) {
+      console.log("request 성공" + data);
+      return data;
+    } else {
+      console.log("실패" + data);
+    }
+  } catch (error) {
+    console.error(`${url}?${createQueryString(objData)} 오류발생 ${error}`);
+  }
+};
+
+export const sendGet = async (url, queryData = "") => {
+  try {
+    let localUrl = `${API_URL}${url}`;
+
+    if (queryData !== "") {
+      localUrl += "/" + queryData;
+    }
+    const head = {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        token: localStorage.getItem("token"),
+        token: localStorage.getItem("token").replace(/\\|"|"/g, ""),
+      },
+    };
+    console.log(head);
+
+    const response = await fetch(localUrl, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        token: localStorage.getItem("token").replace(/\\|"|"/g, ""),
       },
     });
 
@@ -62,16 +102,16 @@ export const sendGet = async (url, queryData) => {
       console.log("request 성공" + data);
       return data;
     } else {
-      console.log("실패");
+      console.log("실패" + data);
     }
   } catch (error) {
-    console.error(`${url} 오류발생 ${error}`);
+    console.error(`${url}/${queryData} 오류발생 ${error}`);
   }
 };
 
 export const sendPut = async (url, objData) => {
   try {
-    const response = await fetch(url, {
+    const response = await fetch(`${API_URL}${url}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -93,9 +133,9 @@ export const sendPut = async (url, objData) => {
   }
 };
 
-export const sendDelete = async (url) => {
+export const sendDelete = async (url, queryData) => {
   try {
-    const response = await fetch(url, {
+    const response = await fetch(`${API_URL}${url}/${queryData}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

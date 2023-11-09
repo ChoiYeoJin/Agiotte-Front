@@ -14,17 +14,24 @@ const zipBtnEl = document.querySelector(".zip-button");
 const modifyBtnEl = document.querySelector(".modify-button");
 const withdrawBtnEl = document.querySelector(".withdraw-button");
 
-const userName = storage.getItem("user-name");
 const userId = storage.getItem("user-id");
 
-memNameEl.innerText = userName;
-memIdEl.innerText = userId;
+const userData = await api.sendGet("/users");
+
+if (userData != undefined) {
+  const userData = await api.sendGet("/users", userId);
+
+  console.log(userData);
+
+  memNameEl.innerText = userData.UserName;
+  memIdEl.innerText = userId;
+}
 
 const clickWithdrawButtonEvent = async () => {
   //await api.sendDelete(`/users/${userId}`);
   storage.clear();
   alert("회원탈퇴 성공!");
-  location.href = "../main/";
+  location.href = "/main/";
 };
 
 const clickModifyButtonEvent = async () => {

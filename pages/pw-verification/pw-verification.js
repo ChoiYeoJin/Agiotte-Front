@@ -3,32 +3,33 @@ import * as storage from "../utils/storage"
 
 const API_URL = 'http://kdt-sw-7-team02.elicecoding.com:3000/images/bmo1.gif';
 
-const findButtonEl = document.querySelector(".findButton");
-findButtonEl.addEventListener("click", clickfindButton);
+const verificationButtonEl = document.querySelector(".verificationButton");
+verificationButtonEl.addEventListener("click", clickverificationButton);
+
 
 const emailRegexp = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
 const checkEmailValid = (targetEmail) => {
     return emailRegexp.test(targetEmail);
 }
 
-function clickfindButton(e) {
+function clickverificationButton(e) {
 
-  const nameEl = document.querySelector("#nameInput");
-  const name = nameEl.value;
+  const idEl = document.querySelector("#idInput");
+  const id = idEl.value;
   const emailEl = document.querySelector("#emailInput");
   const email = emailEl.value;
 
-if (name === '') {
-  alert('이름을 입력해주세요.');
-  nameEl.focus();
+if (id === '') {
+  alert('아이디를 입력해주세요.');
+  idEl.focus();
   return false;
 }
 
 if (email === '') {
     alert('이메일을 입력해주세요.');
-    passwordEl.focus();
+    emailEl.focus();
     return false;
-}
+} 
 
 if (!checkEmailValid(email)) {
   alert('올바른 이메일 주소를 입력해주세요.');
@@ -38,12 +39,12 @@ if (!checkEmailValid(email)) {
 
 // API Request
 const params = {
-  "UserName": "String", 
-  "Email": "String"
+  UserId: id,
+  Email: email,
 };
 
 fetch({
-  url: `${API_URL}/users/id`,
+  url: `${API_URL}/users/password`,
   method: 'POST',
   headers: {
       "Content-Type": "application/json",
@@ -54,11 +55,10 @@ fetch({
   console.log(res, res.ok, res.status);
   
   if(res.ok) {
-    alert('회원님의 아이디는'+ String +'입니다.');
+    location.href = '/pw-change';
   } else {
-    alert('이름이나 이메일이 일치하지 않습니다.');
+    alert('아이디나 이메일이 일치하지 않습니다.');
   }
 })
 .catch(err => console.error(err));
-// alert('등록된 정보가 없습니다')
 }
