@@ -11,11 +11,6 @@ const emailRegexp = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
 const checkEmailValid = (targetEmail) => {
     return emailRegexp.test(targetEmail);
 }
-const passwordRegexp = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
-const checkPwValid = (targetPassword) => {
-  return passwordRegexp.test(targetPassword);
-}
-
 
 function clickverificationButton(e) {
 
@@ -42,12 +37,6 @@ if (!checkEmailValid(email)) {
   return false;
 }
 
-if (!checkPwValid(password)) {
-  alert('올바른 비밀번호를 입력해주세요!\n비밀번호는 8자 이상이어야 하며, 대문자, 소문자, 숫자, 특수문자를 모두 포함해야 합니다.');
-  password.focus();
-  return false;
-}
-
 // API Request
 const params = {
   UserId: id,
@@ -66,7 +55,7 @@ fetch({
   console.log(res, res.ok, res.status);
   
   if(res.ok) {
-    location.href = '/change-pw';
+    location.href = '/pw-change';
   } else {
     alert('아이디나 이메일이 일치하지 않습니다.');
   }
