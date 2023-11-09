@@ -1,12 +1,12 @@
 import * as storage from "../utils/storage";
 import * as api from "../utils/api";
 
-const DELIVERY = 3000;
-
 //user정보는 보안상 이때 가져와야겠지? 임시데이터 구매자정보
 const user = await api.sendGet("/users");
 
 console.log(user);
+const urlParams = new URLSearchParams(window.location.search);
+const buyNow = urlParams.get("buyNow");
 
 const userNameEl = document.querySelector(".user-name");
 const userEmailEl = document.querySelector(".user-email");
@@ -33,9 +33,7 @@ payButtonEl.addEventListener("click", clickPayButtonEvent);
 
 function getPayInfo() {
   // web storage에 저장된 장바구니 정보
-  const urlParams = new URLSearchParams(window.location.search);
-  const buyNow = urlParams.get("buyNow");
-  console.log(buyNow);
+
   if (buyNow !== "true") {
     const cart = storage.getItem("cart");
     let payName = "";
@@ -62,31 +60,58 @@ function getPayInfo() {
   }
 }
 
+let lastImg = "";
+
 async function clickPayButtonEvent(e) {
   const cart = storage.getItem("cart");
   console.log(cart);
-  const productInfos = cart.map((item) => {
-    return {
-      Price: item.price,
-      Amount: item.amount,
-      ProductName: item.name,
-      ProductImg: item.img[0],
-      Detail: item.detail,
-      Condition: item.Condition,
-    };
-  });
-  console.log(productInfos);
-  const response = await api.sendPost("/orders", {
-    Name: user.Name,
-    Address: user.Address,
-    Phone: user.Phone,
-    Email: user.Email,
-    ProductInfos: productInfos,
-  });
+  if (buyNow !== "true") {
+    const productInfos = cart.map((item) => {
+      return {
+        Price: item.price,
+        Amount: item.amount,
+        ProductName: item.productName,
+        ProductImg: item.productImg,
+        Detail: "디테일",
+        Condition: "좋은상태",
+      };
+    });
+
+    const response = await api.sendPost("/orders", {
+      Name: user.UserName,
+      Address: user.Address,
+      Phone: user.Phone === undefined ? "전화번호 없음" : user.Phone,
+      Email: user.Email,
+      ProductInfos: productInfos,
+    });
+
+    lastImg = item.productImg;
+  } else {
+    const prod = storage.getItem("buyNow");
+
+    const response = await api.sendPost("/orders", {
+      Name: user.UserName,
+      Address: user.Address,
+      Phone: user.Phone === undefined ? "전화번호 없음" : user.Phone,
+      Email: user.Email,
+      ProductInfos: [
+        {
+          Price: prod.price,
+          Amount: prod.amount,
+          ProductName: prod.name,
+          ProductImg: prod.img,
+          Detail: "디테일",
+          Condition: "좋은상태",
+        },
+      ],
+    });
+
+    lastImg = prod.img;
+  }
 
   if (response !== undefined) {
     alert("결제 성공!");
-    window.location.href = "order-success.html";
+    window.location.href = "order-success.html?last-img=" + lastImg;
   } else {
     alert("결제 실패!");
   }
