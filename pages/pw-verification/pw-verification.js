@@ -1,10 +1,10 @@
 import * as api from "../utils/api"
 import * as storage from "../utils/storage"
 
-const API_URL = 'http://kdt-sw-7-team02.elicecoding.com:3000/images/bmo1.gif';
+const API_URL = 'http://kdt-sw-7-team02.elicecoding.com/api';
 
 const verificationButtonEl = document.querySelector(".verificationButton");
-verificationButtonEl.addEventListener("click", clickverificationButton);
+verificationButtonEl.addEventListener("click", clickVerificationButton);
 
 
 const emailRegexp = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
@@ -12,7 +12,7 @@ const checkEmailValid = (targetEmail) => {
     return emailRegexp.test(targetEmail);
 }
 
-function clickverificationButton(e) {
+function clickVerificationButton(e) {
 
   const idEl = document.querySelector("#idInput");
   const id = idEl.value;
@@ -43,8 +43,7 @@ const params = {
   Email: email,
 };
 
-fetch({
-  url: `${API_URL}/users/password`,
+fetch(`${API_URL}/users/password`, {
   method: 'POST',
   headers: {
       "Content-Type": "application/json",
@@ -55,7 +54,7 @@ fetch({
   console.log(res, res.ok, res.status);
   
   if(res.ok) {
-    location.href = '/pw-change';
+    location.href = `/pw-change/?UserId=${id}`;
   } else {
     alert('아이디나 이메일이 일치하지 않습니다.');
   }
