@@ -186,6 +186,7 @@ function purchase() {
   alert("구매가 완료되었습니다.");
   cart = [];
   renderCart();
+  location.href = "/order/";
 }
 
 renderCart();
