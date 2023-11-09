@@ -18,7 +18,7 @@ async function clickLoginButton(e) {
   if (response !== undefined) {
     storage.setItem("token", response.token);
     storage.setItem("user-id", email);
-    location.href = "../main/";
+    location.href = "/main/";
   } else {
     alert("아이디 또는 비밀번호가 다릅니다!");
   }
@@ -26,5 +26,5 @@ async function clickLoginButton(e) {
 
 const signupButtonEl = document.querySelector(".signup-button");
 signupButtonEl.addEventListener("click", (e) => {
-  location.href = "../sign-up/";
+  location.href = "/sign-up/";
 });

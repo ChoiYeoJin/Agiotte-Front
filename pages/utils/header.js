@@ -9,7 +9,7 @@ document.querySelector("#header").innerHTML = `
     <div class="header w-full h-[60px] lg:h-[170px]">
       <div class="head flex justify-between px-5 lg:px-20 pt-5">
         <div class="hidden lg:block">
-          <a href="../main/">
+          <a href="/main/">
             <img class="w-40" src="${logo}" alt="logo" />
           </a>
         </div>
@@ -26,7 +26,7 @@ document.querySelector("#header").innerHTML = `
           <button
             class="header-logout hidden"
             href="#"
-            onclick="location.href='../login/'"
+            onclick="location.href='/login/'"
           >
             <img
               class="headerLoginButton mt-3"
@@ -36,8 +36,8 @@ document.querySelector("#header").innerHTML = `
           </button>
           <div class="header-login mt-3">
             <a class="logout cursor-pointer">로그아웃</a>
-            <a class="mx-3" href="../order-list/">마이페이지</a>
-            <a href="../cart/"><i class="fa-solid fa-bag-shopping"></i></a>
+            <a class="mx-3" href="/order-list/">마이페이지</a>
+            <a href="/cart/"><i class="fa-solid fa-bag-shopping"></i></a>
           </div>
         </div>
         <div class="mobile-header w-full flex lg:hidden items-center">
@@ -64,7 +64,7 @@ document.querySelector("#header").innerHTML = `
         <nav class="navbar group dropdown" style="list-style: none">
           <div class="flex space-x-7 pt-10 pl-20">
             <li class="relative tracking-wide">
-              <a class="text-lg leading-tight" href="../list/"
+              <a class="text-lg leading-tight" href="/list/"
                 ><span
                   class="link link-underline link-underline-black m-1 text-black"
                   >유아의류</span
@@ -73,7 +73,7 @@ document.querySelector("#header").innerHTML = `
             </li>
 
             <li>
-              <a class="text-lg leading-tight" href="../list/"
+              <a class="text-lg leading-tight" href="/list/"
                 ><span
                   class="link link-underline link-underline-black m-1 text-black"
                   >유아용품</span
@@ -81,7 +81,7 @@ document.querySelector("#header").innerHTML = `
               >
             </li>
             <li>
-              <a class="text-lg leading-tight" href="../list/"
+              <a class="text-lg leading-tight" href="/list/"
                 ><span
                   class="link link-underline link-underline-black m-1 text-black"
                   >가구</span
@@ -89,7 +89,7 @@ document.querySelector("#header").innerHTML = `
               >
             </li>
             <li>
-              <a class="text-lg leading-tight" href="../list/"
+              <a class="text-lg leading-tight" href="/list/"
                 ><span
                   class="link link-underline link-underline-black m-1 text-black"
                   >기타</span
@@ -103,49 +103,72 @@ document.querySelector("#header").innerHTML = `
           >
             <div class="bg-white flex space-x-10 pt-5 pl-20">
               <div>
-                <div><a class="block" href="../list/">여아의류</a></div>
+                <div><a class="block" href="/list/">여아의류</a></div>
                 <div><a class="block mt-2" href="#">남아의류</a></div>
               </div>
               <div>
-                <div><a class="block" href="../list/">유아용품</a></div>
-                <div><a class="block mt-2" href="../list/">장난감</a></div>
-                <div><a class="block mt-2" href="../list/">청결용품</a></div>
-                <div><a class="block mt-2" href="../list/">안전용품</a></div>
-                <div><a class="block mt-2" href="../list/">잡화</a></div>
+                <div><a class="block" href="/list/">유아용품</a></div>
+                <div><a class="block mt-2" href="/list/">장난감</a></div>
+                <div><a class="block mt-2" href="/list/">청결용품</a></div>
+                <div><a class="block mt-2" href="/list/">안전용품</a></div>
+                <div><a class="block mt-2" href="/list/">잡화</a></div>
               </div>
             </div>
           </div>
         </nav>
       </div>
       <div
-        class="mobile-menu w-full h-[200px] bg-white absolute pt-3 z-10 hidden"
+        class="mobile-menu w-full h-[200px] bg-white absolute pt-3 pl-2 z-10 hidden"
       >
-        <div class="bg-white py-5 pt-5 flex  justify-center space-x-10   min-w-[380px]">
+        <div class="bg-white pt-5 pl-20 flex space-x-10">
           <div>
             <div>
-              <a class="block mt-2 text-xl font-semibold" href="../list/"
+              <a class="block mt-2 text-xl font-semibold" href="/list/"
                 >유아의류</a
               >
             </div>
-            <div><a class="block mt-2 ml-2" href="../list/">여아의류</a></div>
+            <div><a class="block mt-2 ml-2" href="/list/">여아의류</a></div>
             <div><a class="block mt-2 ml-2" href="#">남아의류</a></div>
           </div>
           <div>
             <div>
-              <a class="block mt-2 text-xl font-semibold" href="../list/"
+              <a class="block mt-2 text-xl font-semibold" href="/list/"
                 >유아용품</a
               >
             </div>
-            <div><a class="block mt-2 ml-2" href="../list/">장난감</a></div>
-            <div><a class="block mt-2 ml-2" href="../list/">청결용품</a></div>
-            <div><a class="block mt-2 ml-2" href="../list/">안전용품</a></div>
-            <div><a class="block mt-2 ml-2" href="../list/">잡화</a></div>
+            <div><a class="block mt-2 ml-2" href="/list/">장난감</a></div>
+            <div><a class="block mt-2 ml-2" href="/list/">청결용품</a></div>
+            <div><a class="block mt-2 ml-2" href="/list/">안전용품</a></div>
+            <div><a class="block mt-2 ml-2" href="/list/">잡화</a></div>
           </div>
           <div>
-            <a class="block mt-2 text-xl font-semibold" href="../list/">가구</a>
+            <a class="block mt-2 text-xl font-semibold" href="/list/">가구</a>
           </div>
           <div>
-            <a class="block mt-2 text-xl font-semibold" href="../list/">기타</a>
+            <a class="block mt-2 text-xl font-semibold" href="/list/">기타</a>
+          </div>
+        </div>
+      </div>
+      <div
+        class="mobile-user-menu w-[150px] h-[200px] absolute right-0 pt-3 pb-5 z-10 hidden "
+      >
+        <div class="bg-white shadow-md py-5 px-5  flex flex-col justify-center space-y-2 ">
+          <div>
+            <div>
+              <a class="mobile-logout block mt-2 text-xl font-semibold" href=""
+                >로그아웃</a
+              >
+            </div>
+          </div>
+          <div>
+            <div>
+              <a class="mobile-my block mt-2 text-xl font-semibold" href="/order-list/"
+                >마이페이지</a
+              >
+            </div>
+          </div>
+          <div>
+            <a class="block mt-2 text-xl font-semibold" href="/cart/">장바구니</a>
           </div>
         </div>
       </div>
@@ -172,7 +195,7 @@ const clickLogoutEvent = () => {
   logoutHeaderEl.classList.remove("hidden");
   loginHeaderEl.classList.add("hidden");
   alert("로그아웃 되었습니다!");
-  location.href = "../main/";
+  location.href = "/main/";
 };
 
 logoutEl.addEventListener("click", clickLogoutEvent);
@@ -182,6 +205,8 @@ const mobileSearchIconEl = document.querySelector(".mobile-search-icon");
 const mobileUserIconEl = document.querySelector(".mobile-user-icon");
 const mobileMenuEl = document.querySelector(".mobile-menu");
 const mobileSkipIconEl = document.querySelector(".mobile-skip-icon");
+const mobileUserMenuEl = document.querySelector(".mobile-user-menu");
+const mobileLogoutEl = document.querySelector(".mobile-logout");
 
 const clickSearchIconEvent = () => {
   mobileSkipIconEl.classList.remove("hidden");
@@ -197,12 +222,18 @@ const clickSkipIconEvent = () => {
 
 const clickUserIconEvent = () => {
   if (token) {
-    location.href = "../order-list/";
+    mobileUserMenuEl.classList.remove("hidden");
   } else {
-    location.href = "../login/";
+    location.href = "/login/";
   }
 };
 
 mobileSearchIconEl.addEventListener("click", clickSearchIconEvent);
 mobileSkipIconEl.addEventListener("click", clickSkipIconEvent);
 mobileUserIconEl.addEventListener("click", clickUserIconEvent);
+mobileLogoutEl.addEventListener("click", clickLogoutEvent);
+
+//mobileMenuEl.addEventListener("mouseleave", clickSkipIconEvent);
+mobileUserMenuEl.addEventListener("mouseleave", () => {
+  mobileUserMenuEl.classList.add("hidden");
+});
