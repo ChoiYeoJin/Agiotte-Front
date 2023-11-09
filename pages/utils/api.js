@@ -5,11 +5,25 @@ export const API_URL = "http://kdt-sw-7-team02.elicecoding.com/api";
 export const IMG_URL = API_URL + "/images/";
 import * as storage from "./storage";
 
+const checkTokenHead = () => {
+  const token = storage.getItem("token");
+  if (token) {
+    return {
+      "Content-Type": "application/json",
+      authorization: `${token}`,
+    };
+  } else {
+    return {
+      "Content-Type": "application/json",
+    };
+  }
+};
+
 export const sendPost = async (url, objData) => {
   try {
     let headers = {};
     const token = storage.getItem("token");
-    if (url === "/users/login") {
+    if (url === "/users/login" || url === "/users/main") {
       headers = {
         "Content-Type": "application/json",
       };
@@ -52,15 +66,12 @@ const createQueryString = (params) => {
 export const sendGetWithQuery = async (url, objData) => {
   try {
     const token = storage.getItem("token");
-    //console.log(`${API_URL}${url}?${createQueryString(objData)}`);
+
     const response = await fetch(
       `${API_URL}${url}?${createQueryString(objData)}`,
       {
         method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          authorization: `${token}`,
-        },
+        headers: checkTokenHead,
       }
     );
 

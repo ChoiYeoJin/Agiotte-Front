@@ -89,7 +89,7 @@ function clickCartButtonEvent(e) {
   storage.updateCart(details.seq, {
     name: details.name,
     id: details.seq,
-    img: details.img,
+    img: details.img.map((item) => api.IMG_URL + item),
     price: details.price,
     amount: Number(selectEl.value),
   });
@@ -115,7 +115,7 @@ function clickSubImages() {
   const subImages = document.querySelectorAll(".subImage");
 
   // 각 서브 이미지에 클릭 이벤트 리스너 추가
-  subImages.forEach(img => {
+  subImages.forEach((img) => {
     img.addEventListener("click", function () {
       // 메인 이미지의 src 속성을 클릭된 이미지의 src로 변경
       document.getElementById("main-image").src = this.src;
