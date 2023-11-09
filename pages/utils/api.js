@@ -23,7 +23,7 @@ export const sendPost = async (url, objData) => {
   try {
     let headers = {};
     const token = storage.getItem("token");
-    if (url === "/users/login" || url === "/users/main") {
+    if (url === "/users/login") {
       headers = {
         "Content-Type": "application/json",
       };
@@ -71,7 +71,7 @@ export const sendGetWithQuery = async (url, objData) => {
       `${API_URL}${url}?${createQueryString(objData)}`,
       {
         method: "GET",
-        headers: checkTokenHead,
+        headers: checkTokenHead(),
       }
     );
 
@@ -109,10 +109,7 @@ export const sendGet = async (url, queryData = "") => {
 
     const response = await fetch(localUrl, {
       method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        authorization: `${storage.getItem("token")}`,
-      },
+      headers: checkTokenHead(),
     });
 
     const data = await response.json();

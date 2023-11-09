@@ -95,7 +95,8 @@ const boxEl = document.querySelector(".card-box");
 
 //data load
 const fetchData = async () => {
-  return Promise.resolve(JSON.parse(testdata));
+  const data = await api.sendGet("/orders");
+  return data;
 };
 const data = await fetchData();
 console.log(data);
@@ -104,12 +105,13 @@ const frag = document.createDocumentFragment();
 
 data.forEach((item) => {
   const prod = item.ProductInfos[0];
+
   const div = document.createElement("div");
   div.innerHTML += getOrderCardHTML(
     item.shortId,
     item.createdAt.substr(0, 10),
     prod.ProductImg,
-    prod.ProductName,
+    createProdName(prod.ProductName, item.ProductInfos.length),
     item.TotalPrice,
     item.Status
   );
@@ -127,3 +129,10 @@ const clickOrderChangeButtonEvent = (e) => {
 orderChangeBtnEls.forEach((el) => {
   el.addEventListener("click", clickOrderChangeButtonEvent);
 });
+
+function createProdName(name, len) {
+  if (len > 1) {
+    return name + ` 외 ${len - 1}종`;
+  }
+  return name;
+}
