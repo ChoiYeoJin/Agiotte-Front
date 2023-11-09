@@ -104,7 +104,7 @@ function clickBuyButtonEvent(e) {
     price: details.price,
     amount: Number(selectEl.value),
   });
-  location.href = "../order/?buyNow=true";
+  location.href = "/order/?buyNow=true";
 }
 
 function clickSubImages() {

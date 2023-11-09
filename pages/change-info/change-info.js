@@ -31,7 +31,7 @@ const clickWithdrawButtonEvent = async () => {
   //await api.sendDelete(`/users/${userId}`);
   storage.clear();
   alert("회원탈퇴 성공!");
-  location.href = "../main/";
+  location.href = "/main/";
 };
 
 const clickModifyButtonEvent = async () => {

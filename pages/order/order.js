@@ -67,5 +67,5 @@ function getPayInfo() {
 
 async function clickPayButtonEvent(e) {
   //const result = await api.sendPost("/orders/", payInfo);
-  window.location.href = "./order-success.html";
+  window.location.href = "order-success.html";
 }
