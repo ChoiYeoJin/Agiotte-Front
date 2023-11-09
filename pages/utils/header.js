@@ -107,7 +107,7 @@ document.querySelector("#header").innerHTML = `
                 <div><a class="block mt-2" href="/list/?category=girl">남아의류</a></div>
               </div>
               <div>
-                <div><a class="block mt-2" href="/list/?category=toy">장난감</a></div>
+                <div><a class="block" href="/list/?category=toy">장난감</a></div>
                 <div><a class="block mt-2" href="/list/?category=cleanGoods">청결용품</a></div>
                 <div><a class="block mt-2" href="/list/?category=securityGoods">안전용품</a></div>
                 <div><a class="block mt-2" href="/list/?category=fancyGoods">잡화</a></div>

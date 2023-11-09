@@ -43,6 +43,11 @@ const cards = [
   },
 ];
 
+const data = await api.sendGetWithQuery("/categories/products", {
+  en_name: "goods",
+  page: 1,
+});
+
 await initMain();
 const cardElements = document.querySelectorAll(".card");
 
@@ -56,15 +61,18 @@ async function initMain() {
   cardFrame.classList.add("gap-5");
   cardFrame.classList.add("justify-center");
 
-  const data = await api.sendGet("/categories/products", "boy");
+  const data = await api.sendGetWithQuery("/categories/products", {
+    en_name: "goods",
+    page: 1,
+  });
   console.log(data);
 
-  cards.forEach((item) => {
+  data.products.forEach((item) => {
     cardFrame.innerHTML += getCardHTML(
       item.id,
       item.name,
       item.price,
-      item.img,
+      api.IMG_URL + item.img[0],
       item.tag
     );
   });
