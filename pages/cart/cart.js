@@ -23,7 +23,7 @@ function addToCart(item) {
     return;
   }
 
-  const existingItem = cart.find(cartItem => cartItem.name === item.name);
+  const existingItem = cart.find((cartItem) => cartItem.name === item.name);
 
   if (existingItem) {
     existingItem.quantity += item.quantity;
@@ -33,7 +33,7 @@ function addToCart(item) {
   localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-document.body.addEventListener("click", e => {
+document.body.addEventListener("click", (e) => {
   if (e.target.matches(".quantity-button")) {
     const index = Number(e.target.getAttribute("data-index"));
     const operation = e.target.getAttribute("data-operation");
@@ -57,7 +57,7 @@ function updateQuantity(index, operation) {
   }
 }
 
-document.body.addEventListener("click", e => {
+document.body.addEventListener("click", (e) => {
   if (e.target.matches(".remove-button")) {
     const productId = e.target.getAttribute("data-product-id");
     cart = removeCartItem(productId); // removeCartItem 함수의 반환값으로 cart를 업데이트합니다.
@@ -138,23 +138,10 @@ function renderCart() {
 
   cartTotalElement.innerHTML = `
       <div class="cart-total flex text-center justify-center border-b items-center px-20">
+ 
         <div class="p-8">
-          <p>상품금액</p>
-          <p>${totalAmount}원</p>
-        </div>
-        <div class="p-8 text-3xl font-bold">
-          <p>+</p>
-        </div>
-        <div class="p-8">
-          <p>배송비(30,000원 이상 무료)</p>
-          <p>3000원</p>
-        </div>
-        <div class="p-8 text-3xl font-bold">
-          <p>=</p>
-        </div>  
-        <div class="p-8">
-          <p>주문금액</p>
-          <p class="font-bold text-lg">${totalAmount + 3000}원</p>
+          <p>총 주문금액</p>
+          <p class="font-bold text-lg">${totalAmount}원</p>
         </div>
     </div>
 
@@ -166,14 +153,11 @@ function renderCart() {
       <p>총 상품금액</p>
       <p class="text-black">${addCommasToNumber(totalAmount)}원</p>
     </div>
-    <div class="p-10 flex-grow border-r border-b text-center">
-      <p>총 배송비</p>
-      <p class="text-black">+${addCommasToNumber(3000)}원</p>
-    </div>
+
     <div class="p-10 w-1/2 border-b flex justify-end items-center space-x-4">
       <h4>결제금액</h4>
       <h4 class="text-red-400 font-bold">${addCommasToNumber(
-        totalAmount + 3000
+        totalAmount
       )}원</h4>
       <button class="bg-red-400 hover:bg-red-500 text-white font-bold py-2 px-4 rounded-md inline-flex items-center w-100 h-20 flex-shrink-0 purchase-button">
         구매하기

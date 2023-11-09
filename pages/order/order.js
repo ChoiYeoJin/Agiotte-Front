@@ -10,18 +10,17 @@ const buyNow = urlParams.get("buyNow");
 
 const userNameEl = document.querySelector(".user-name");
 const userEmailEl = document.querySelector(".user-email");
-const userPhoneEl = document.querySelector(".user-phone");
+// const userPhoneEl = document.querySelector(".user-phone");
 const userAddrEl = document.querySelector(".user-addr");
 
 userNameEl.innerText = user.UserName;
 userEmailEl.innerText = user.Email;
-userPhoneEl.innerText = user.Phone === undefined ? "" : user.Phone;
+// userPhoneEl.innerText = user.Phone === undefined ? "" : user.Phone;
 userAddrEl.innerText = user.Address;
 
 //결제 정보
 const cartProductsEl = document.querySelector(".cart-products");
 const cartTotalPriceEl = document.querySelector(".cart-total-price");
-const deliveryFeeEl = document.querySelector(".delivery-fee");
 
 const payInfo = getPayInfo();
 cartProductsEl.innerText = payInfo.name;
@@ -36,16 +35,19 @@ function getPayInfo() {
 
   if (buyNow !== "true") {
     const cart = storage.getItem("cart");
+    console.log(cart);
     let payName = "";
 
     if (cart.length > 1) {
-      payName = `${cart[0].name} 외 ${cart.length - 1}종`;
+      payName = `${cart[0].productName} 외 ${cart.length - 1}종`;
     } else {
-      payName = cart[0].name;
+      payName = cart[0].productName;
     }
 
-    const totalPrice =
-      cart.reduce((acc, el) => (acc += el.price * el.amount), 0) + DELIVERY;
+    const totalPrice = cart.reduce(
+      (acc, el) => (acc += el.price * el.amount),
+      0
+    );
     return {
       name: payName,
       totalPrice: totalPrice.toLocaleString(),

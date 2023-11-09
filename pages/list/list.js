@@ -58,18 +58,23 @@ function loadCards(cards) {
   cardFrame.classList.add("md:grid-cols-3");
   cardFrame.classList.add("gap-5");
   cardFrame.classList.add("justify-center");
-  console.log(cards);
+  //console.log(cards);
+
+  const frag = document.createDocumentFragment();
+
   cards.forEach((item) => {
-    cardFrame.innerHTML += getCardHTML(
+    const div = document.createElement("div");
+    div.innerHTML += getCardHTML(
       item.seq,
       item.name,
       item.price,
       `${api.API_URL}/images/${item.img[0]}`,
       item.condition
     );
+    frag.appendChild(div);
   });
 
-  cardBox.appendChild(cardFrame);
+  cardBox.appendChild(frag);
 }
 
 //await fetchData();
