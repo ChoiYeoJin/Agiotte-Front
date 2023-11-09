@@ -3,9 +3,12 @@
 // http://kdt-sw-7-team02.elicecoding.com
 export const API_URL = "http://kdt-sw-7-team02.elicecoding.com/api";
 export const IMG_URL = API_URL + "/images/";
+import * as storage from "./storage";
+
 export const sendPost = async (url, objData) => {
   try {
     let headers = {};
+    const token = storage.getItem("token");
     if (url === "/users/login") {
       headers = {
         "Content-Type": "application/json",
@@ -13,7 +16,7 @@ export const sendPost = async (url, objData) => {
     } else {
       headers = {
         "Content-Type": "application/json",
-        token: localStorage.getItem("token"),
+        authorization: `${token}`,
       };
     }
 
@@ -48,16 +51,27 @@ const createQueryString = (params) => {
 
 export const sendGetWithQuery = async (url, objData) => {
   try {
+    const token = storage.getItem("token");
+    //console.log(`${API_URL}${url}?${createQueryString(objData)}`);
     const response = await fetch(
       `${API_URL}${url}?${createQueryString(objData)}`,
       {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          token: localStorage.getItem("token"),
+          authorization: `${token}`,
         },
       }
     );
+
+    const head = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `${token}`,
+      },
+    };
+    console.log(head);
 
     const data = await response.json();
 
@@ -79,20 +93,14 @@ export const sendGet = async (url, queryData = "") => {
     if (queryData !== "") {
       localUrl += "/" + queryData;
     }
-    const head = {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        token: localStorage.getItem("token").replace(/\\|"|"/g, ""),
-      },
-    };
-    console.log(head);
+
+    console.log(localUrl);
 
     const response = await fetch(localUrl, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        token: localStorage.getItem("token").replace(/\\|"|"/g, ""),
+        authorization: `${storage.getItem("token")}`,
       },
     });
 
@@ -115,7 +123,7 @@ export const sendPut = async (url, objData) => {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        token: localStorage.getItem("token"),
+        authorization: `${storage.getItem("token")}`,
       },
       body: JSON.stringify(objData),
     });
@@ -139,7 +147,7 @@ export const sendDelete = async (url, queryData) => {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        token: localStorage.getItem("token"),
+        authorization: `${storage.getItem("token")}`,
       },
       body: JSON.stringify(objData),
     });

@@ -73,7 +73,7 @@ async function initMain() {
       item.name,
       item.price,
       api.IMG_URL + item.img[0],
-      item.tag
+      item.condition
     );
   });
 

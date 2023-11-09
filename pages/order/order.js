@@ -13,10 +13,10 @@ const userEmailEl = document.querySelector(".user-email");
 const userPhoneEl = document.querySelector(".user-phone");
 const userAddrEl = document.querySelector(".user-addr");
 
-userNameEl.innerText = user.name;
-userEmailEl.innerText = user.email;
-userPhoneEl.innerText = user.phone;
-userAddrEl.innerText = user.addr;
+userNameEl.innerText = user.UserName;
+userEmailEl.innerText = user.Email;
+userPhoneEl.innerText = user.Phone === undefined ? "" : user.Phone;
+userAddrEl.innerText = user.Address;
 
 //결제 정보
 const cartProductsEl = document.querySelector(".cart-products");
@@ -63,5 +63,30 @@ function getPayInfo() {
 }
 
 async function clickPayButtonEvent(e) {
-  window.location.href = "order-success.html";
+  const cart = storage.getItem("cart");
+  const productInfos = cart.map((item) => {
+    return {
+      Price: item.price,
+      Amount: item.amount,
+      ProductName: item.name,
+      ProductImg: item.img,
+      Detail: item.detail,
+      Condition: item.Condition,
+    };
+  });
+  console.log(productInfos);
+  const response = await api.sendPost("/orders", {
+    Name: user.Name,
+    Address: user.Address,
+    Phone: user.Phone,
+    Email: user.Email,
+    ProductInfos: productInfos,
+  });
+
+  if (response !== undefined) {
+    alert("결제 성공!");
+    window.location.href = "order-success.html";
+  } else {
+    alert("결제 실패!");
+  }
 }
