@@ -4,12 +4,9 @@ import * as api from "../utils/api";
 const DELIVERY = 3000;
 
 //user정보는 보안상 이때 가져와야겠지? 임시데이터 구매자정보
-const user = {
-  name: "김진수",
-  email: "rlawlstn12@gmail.com",
-  phone: "000-0000-0000",
-  addr: "서울시 송파구",
-};
+const user = await api.sendGet("/users");
+
+console.log(user);
 
 const userNameEl = document.querySelector(".user-name");
 const userEmailEl = document.querySelector(".user-email");
@@ -44,9 +41,9 @@ function getPayInfo() {
     let payName = "";
 
     if (cart.length > 1) {
-      payName = `${cart[0].productName} 외 ${cart.length - 1}종`;
+      payName = `${cart[0].name} 외 ${cart.length - 1}종`;
     } else {
-      payName = cart[0].productName;
+      payName = cart[0].name;
     }
 
     const totalPrice =
@@ -59,13 +56,12 @@ function getPayInfo() {
     const prod = storage.getItem("buyNow");
     console.log(prod);
     return {
-      name: prod.productName,
+      name: prod.name,
       totalPrice: (prod.price * prod.amount).toLocaleString(),
     };
   }
 }
 
 async function clickPayButtonEvent(e) {
-  //const result = await api.sendPost("/orders/", payInfo);
   window.location.href = "order-success.html";
 }

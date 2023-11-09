@@ -64,7 +64,7 @@ document.querySelector("#header").innerHTML = `
         <nav class="navbar group dropdown" style="list-style: none">
           <div class="flex space-x-7 pt-10 pl-20">
             <li class="relative tracking-wide">
-              <a class="text-lg leading-tight" href="/list/"
+              <a class="text-lg leading-tight" href="/list/?category=clothes"
                 ><span
                   class="link link-underline link-underline-black m-1 text-black"
                   >유아의류</span
@@ -73,7 +73,7 @@ document.querySelector("#header").innerHTML = `
             </li>
 
             <li>
-              <a class="text-lg leading-tight" href="/list/"
+              <a class="text-lg leading-tight" href="/list/?category=goods"
                 ><span
                   class="link link-underline link-underline-black m-1 text-black"
                   >유아용품</span
@@ -81,7 +81,7 @@ document.querySelector("#header").innerHTML = `
               >
             </li>
             <li>
-              <a class="text-lg leading-tight" href="/list/"
+              <a class="text-lg leading-tight" href="/list/?category=furniture"
                 ><span
                   class="link link-underline link-underline-black m-1 text-black"
                   >가구</span
@@ -89,7 +89,7 @@ document.querySelector("#header").innerHTML = `
               >
             </li>
             <li>
-              <a class="text-lg leading-tight" href="/list/"
+              <a class="text-lg leading-tight" href="/list/?category=etc"
                 ><span
                   class="link link-underline link-underline-black m-1 text-black"
                   >기타</span
@@ -103,15 +103,14 @@ document.querySelector("#header").innerHTML = `
           >
             <div class="bg-white flex space-x-10 pt-5 pl-20">
               <div>
-                <div><a class="block" href="/list/">여아의류</a></div>
-                <div><a class="block mt-2" href="#">남아의류</a></div>
+                <div><a class="block" href="/list/?category=boy">여아의류</a></div>
+                <div><a class="block mt-2" href="/list/?category=girl">남아의류</a></div>
               </div>
               <div>
-                <div><a class="block" href="/list/">유아용품</a></div>
-                <div><a class="block mt-2" href="/list/">장난감</a></div>
-                <div><a class="block mt-2" href="/list/">청결용품</a></div>
-                <div><a class="block mt-2" href="/list/">안전용품</a></div>
-                <div><a class="block mt-2" href="/list/">잡화</a></div>
+                <div><a class="block mt-2" href="/list/?category=toy">장난감</a></div>
+                <div><a class="block mt-2" href="/list/?category=cleanGoods">청결용품</a></div>
+                <div><a class="block mt-2" href="/list/?category=securityGoods">안전용품</a></div>
+                <div><a class="block mt-2" href="/list/?category=fancyGoods">잡화</a></div>
               </div>
             </div>
           </div>
@@ -123,29 +122,29 @@ document.querySelector("#header").innerHTML = `
         <div class="bg-white pt-5 pl-20 flex space-x-10">
           <div>
             <div>
-              <a class="block mt-2 text-xl font-semibold" href="/list/"
+              <a class="block mt-2 text-xl font-semibold" href="/list/?category=clothes"
                 >유아의류</a
               >
             </div>
-            <div><a class="block mt-2 ml-2" href="/list/">여아의류</a></div>
-            <div><a class="block mt-2 ml-2" href="#">남아의류</a></div>
+            <div><a class="block mt-2 ml-2" href="/list/?category=girl">여아의류</a></div>
+            <div><a class="block mt-2 ml-2" href="/list/?category=boy">남아의류</a></div>
           </div>
           <div>
             <div>
-              <a class="block mt-2 text-xl font-semibold" href="/list/"
+              <a class="block mt-2 text-xl font-semibold" href="/list/?category=goods"
                 >유아용품</a
               >
             </div>
-            <div><a class="block mt-2 ml-2" href="/list/">장난감</a></div>
-            <div><a class="block mt-2 ml-2" href="/list/">청결용품</a></div>
-            <div><a class="block mt-2 ml-2" href="/list/">안전용품</a></div>
-            <div><a class="block mt-2 ml-2" href="/list/">잡화</a></div>
+            <div><a class="block mt-2 ml-2" href="/list/?category=toy">장난감</a></div>
+            <div><a class="block mt-2 ml-2" href="/list/?category=cleanGoods">청결용품</a></div>
+            <div><a class="block mt-2 ml-2" href="/list/?category=securityGoods">안전용품</a></div>
+            <div><a class="block mt-2 ml-2" href="/list/?category=fancyGoods">잡화</a></div>
           </div>
           <div>
-            <a class="block mt-2 text-xl font-semibold" href="/list/">가구</a>
+            <a class="block mt-2 text-xl font-semibold" href="/list/?category=furniture">가구</a>
           </div>
           <div>
-            <a class="block mt-2 text-xl font-semibold" href="/list/">기타</a>
+            <a class="block mt-2 text-xl font-semibold" href="/list/?category=etc">기타</a>
           </div>
         </div>
       </div>
