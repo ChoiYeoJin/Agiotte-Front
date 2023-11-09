@@ -5,36 +5,35 @@ import { getItem, removeCartItem } from "../utils/storage";
 let cart = getItem("cart") || [];
 
 console.log(cart);
-//상품을 담는 객체
+
+document.body.addEventListener("click", function (event) {
+  if (event.target.matches(".purchase-button")) {
+    purchase();
+  }
+});
+
 function addToCart(item) {
-  // 입력 값 검증 -> 따로 public 폴더에 js Regex 검증 파일에 추가해서 할지는 검토
   if (
     typeof item.name !== "string" ||
-    typeof item.image !== "string" ||
+    typeof item.img !== "string" ||
     typeof item.price !== "number" ||
-    typeof item.deliveryFee !== "number" ||
-    typeof item.quantity !== "number"
+    typeof item.amount !== "number"
   ) {
     console.error("유효하지 않은 상품 정보입니다.");
     return;
   }
 
-  // 이미 장바구니에 있는 상품인지 확인
   const existingItem = cart.find(cartItem => cartItem.name === item.name);
 
   if (existingItem) {
-    // 이미 장바구니에 있는 상품이면 수량을 업데이트
     existingItem.quantity += item.quantity;
   } else {
-    // 장바구니에 없는 상품이면 장바구니에 추가
     cart.push(item);
   }
 
-  // 장바구니를 다시 렌더링 <- 중요한건데 생각 못하다가 발견..
   renderCart();
 }
 
-// 수량 변경 버튼에 이벤트 리스너 추가
 document.body.addEventListener("click", e => {
   if (e.target.matches(".quantity-button")) {
     const index = Number(e.target.getAttribute("data-index"));
@@ -43,24 +42,27 @@ document.body.addEventListener("click", e => {
   }
 });
 
-// 수량을 변경하는 함수
 function updateQuantity(index, operation) {
-  // 장바구니의 해당 인덱스 아이템을 찾음
   const item = cart[index];
   if (item) {
-    // 아이템이 있다면, 수량을 증가 또는 감소
     if (operation === "increase") {
-      item.quantity++;
-    } else if (operation === "decrease" && item.quantity > 1) {
-      item.quantity--;
+      item.amount++;
+    } else if (operation === "decrease") {
+      item.amount > 1 ? item.amount-- : alert("최소 수량은 1개입니다.");
     }
-    // 변경된 장바구니 정보를 로컬 스토리지에 저장
     localStorage.setItem("cart", JSON.stringify(cart));
-    // 장바구니를 다시 렌더링
     renderCart();
   }
 }
-//장바구니 상품 목록 렌더링
+
+document.body.addEventListener("click", e => {
+  if (e.target.matches(".remove-button")) {
+    const productId = e.target.getAttribute("data-product-id");
+    cart = removeCartItem(productId);
+    renderCart();
+  }
+});
+
 function renderCart() {
   const cartElement = document.getElementById("cart");
   const cardBoxElement = document.getElementById("card-box");
@@ -78,12 +80,10 @@ function renderCart() {
   }
 
   let totalAmount = 0;
-  let totalDeliveryFee = 0;
 
   cartElement.innerHTML = cart
     .map((item, index) => {
-      totalAmount += item.price * item.quantity;
-      totalDeliveryFee += item.deliveryFee;
+      totalAmount += item.price * item.amount;
 
       return `
       <div class="cart-item border-b border-t flex px-10">
@@ -106,7 +106,7 @@ function renderCart() {
           <div class="flex items-center justify-center p-20 w-30">
           <button class="border w-10 h-10 bg-white-300 quantity-button" data-index="${index}" data-operation="decrease">-</button>
           <input class="border w-10 h-10 bg-white-500 text-center appearance-none" type="number" value="${
-            item.quantity
+            item.amount
           }" />
           <button class="border w-10 h-10 bg-white-300 quantity-button" data-index="${index}" data-operation="increase">+</button>
           </div> 
@@ -133,7 +133,7 @@ function renderCart() {
       <div class="cart-total flex text-center justify-center border-b items-center px-20">
         <div class="p-8">
           <p>상품금액</p>
-          <p>${totalAmount}</p>
+          <p>${totalAmount}원</p>
         </div>
         <div class="p-8 text-3xl font-bold">
           <p>+</p>
@@ -157,7 +157,7 @@ function renderCart() {
   <div class="flex mt-20  border-t-2 border-red-400">
     <div class="p-10 flex-grow border-r border-b text-center">
       <p>총 상품금액</p>
-      <p class="text-black">${addCommasToNumber(70000)}원</p>
+      <p class="text-black">${addCommasToNumber(totalAmount)}원</p>
     </div>
     <div class="p-10 flex-grow border-r border-b text-center">
       <p>총 배송비</p>
@@ -165,19 +165,20 @@ function renderCart() {
     </div>
     <div class="p-10 w-1/2 border-b flex justify-end items-center space-x-4">
       <h4>결제금액</h4>
-      <h4 class="text-red-400 font-bold">${addCommasToNumber(73000)}원</h4>
-      <button onClick="()=>{}" class="bg-red-400 hover:bg-red-500 text-white font-bold py-2 px-4 rounded-md inline-flex items-center w-100 h-20 flex-shrink-0">
+      <h4 class="text-red-400 font-bold">${addCommasToNumber(
+        totalAmount + 3000
+      )}원</h4>
+      <button class="bg-red-400 hover:bg-red-500 text-white font-bold py-2 px-4 rounded-md inline-flex items-center w-100 h-20 flex-shrink-0 purchase-button">
         구매하기
       </button>
     </div>
   </div>`;
 }
 
-// "구매하기" 버튼을 눌렀을 때 실행될 함수 [임시]
 function purchase() {
   alert("구매가 완료되었습니다.");
-  cart = []; // 장바구니를 비움
-  renderCart(); // 장바구니를 다시 렌더링
+  cart = [];
+  renderCart();
 }
 
 renderCart();

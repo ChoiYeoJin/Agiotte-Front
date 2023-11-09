@@ -7,8 +7,10 @@ async function getOrderDetails(Id) {
   try {
     const data = await sendGet(
       `http://kdt-sw-7-team02.elicecoding.com:3000/orders`,
-      Id
+      ""
     );
+
+    console.log(data);
 
     const itemDiv = document.querySelector(".list-main");
     itemDiv.querySelector(".order-name").textContent = data.name;
