@@ -19,11 +19,15 @@ const checkTokenHead = () => {
   }
 };
 
-export const sendPost = async (url, objData) => {
+export const sendPost = async (url, objData = null) => {
   try {
     let headers = {};
     const token = storage.getItem("token");
-    if (url === "/users/login" || url === "/users/main") {
+    if (
+      url === "/users/login" ||
+      url === "/users/main" ||
+      url.includes("/join")
+    ) {
       headers = {
         "Content-Type": "application/json",
       };
@@ -54,7 +58,7 @@ export const sendPost = async (url, objData) => {
   }
 };
 
-const createQueryString = (params) => {
+const createQueryString = params => {
   return Object.entries(params)
     .map(
       ([key, value]) =>
