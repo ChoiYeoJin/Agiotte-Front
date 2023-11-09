@@ -1,17 +1,12 @@
 import * as api from "../utils/api"
 import * as storage from "../utils/storage"
 
-const API_URL = 'http://kdt-sw-7-team02.elicecoding.com:3000/images/bmo1.gif';
+const API_URL = 'http://kdt-sw-7-team02.elicecoding.com/api';
 
 const verificationButtonEl = document.querySelector(".verificationButton");
-verificationButtonEl.addEventListener("click", clickverificationButton);
+verificationButtonEl.addEventListener("click", clickVerificationButton);
 
-const passwordRegexp = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
-const checkPwValid = (targetPassword) => {
-  return passwordRegexp.test(targetPassword);
-}
-
-function clickverificationButton(e) {
+function clickVerificationButton(e) {
 
   const idEl = document.querySelector("#idInput");
   const id = idEl.value;
@@ -28,11 +23,6 @@ function clickverificationButton(e) {
     passwordEl.focus();
     return false;
   }
-  if (!checkPwValid(password)) {
-    alert('올바른 비밀번호를 입력해주세요!\n비밀번호는 8자 이상이어야 하며, 대문자, 소문자, 숫자, 특수문자를 모두 포함해야 합니다.');
-    password.focus();
-    return false;
-  }
 
   // API Request
   const params = {
@@ -40,8 +30,7 @@ function clickverificationButton(e) {
     HashPwd: String,
   };
 
-  fetch({
-    url: `${API_URL}/users`,
+  fetch(`${API_URL}/users`, {
     method: 'POST',
     headers: {
       "Content-Type": "application/json",
@@ -52,7 +41,7 @@ function clickverificationButton(e) {
       console.log(res, res.ok, res.status);
 
       if (res.ok) {
-        location.href = 'http://localhost:8080/profile/';
+        location.href = '/profile/';
       } else {
         alert('아이디나 비밀번호가 일치하지 않습니다.');
       }
