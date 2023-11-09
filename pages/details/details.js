@@ -89,11 +89,12 @@ function clickCartButtonEvent(e) {
   storage.updateCart(details.seq, {
     name: details.name,
     id: details.seq,
-    img: details.img,
+    img: imgs.map((item) => api.IMG_URL + item),
     price: details.price,
     amount: Number(selectEl.value),
   });
 
+  console.log("cart");
   console.log(storage.getItem("cart"));
   //alert("장바구니로 이동하시겠습니까?");
 }
@@ -102,7 +103,7 @@ function clickBuyButtonEvent(e) {
   storage.setItem("buyNow", {
     name: details.name,
     id: details.seq,
-    img: details.img[0],
+    img: imgs[0],
     price: details.price,
     amount: Number(selectEl.value),
   });
