@@ -50,9 +50,10 @@ async function initMain() {
   const cardBox = document.querySelector(".card-box");
 
   const cardFrame = document.createElement("div");
-  cardFrame.classList.add("flex");
-  cardFrame.classList.add("flex-wrap");
-  cardFrame.classList.add("space-x-5");
+  cardFrame.classList.add("grid");
+  cardFrame.classList.add("lg:grid-cols-6");
+  cardFrame.classList.add("md:grid-cols-3");
+  cardFrame.classList.add("gap-5");
   cardFrame.classList.add("justify-center");
 
   const data = await api.sendGet("/categories/products", "boy");

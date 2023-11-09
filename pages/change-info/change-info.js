@@ -16,7 +16,7 @@ const withdrawBtnEl = document.querySelector(".withdraw-button");
 
 const userId = storage.getItem("user-id");
 
-const userData = await api.sendGet("/users", userId);
+const userData = await api.sendGet("/users");
 
 if (userData != undefined) {
   const userData = await api.sendGet("/users", userId);

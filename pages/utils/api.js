@@ -45,10 +45,15 @@ const createQueryString = (params) => {
     .join("&");
 };
 
-export const sendGet = async (url, queryData) => {
+export const sendGet = async (url, queryData = "") => {
   try {
-    console.log(`${API_URL}${url}/${queryData}`);
-    const response = await fetch(`${API_URL}${url}/${queryData}`, {
+    let localUrl = `${API_URL}${url}`;
+
+    if (queryData !== "") {
+      localUrl += "/" + queryData;
+    }
+
+    const response = await fetch(localUrl, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
