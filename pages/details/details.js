@@ -23,7 +23,7 @@ const imgs = details.productImg;
 imgEl.setAttribute("src", imgs[0]);
 for (let i = 0; i < imgs.length; i++) {
   subImgEls[i].setAttribute("src", imgs[i]);
-  subImgEls[i].addEventListener("click", (e) => {
+  subImgEls[i].addEventListener("click", e => {
     imgEl.setAttribute("src", e.target.getAttribute("src"));
   });
 }
@@ -87,7 +87,7 @@ function clickCartButtonEvent(e) {
   storage.updateCart(productId, {
     productName: details.productName,
     productId: productId,
-    productImg: details.productImg,
+    productImg: details.productImg[0],
     price: details.price,
     amount: Number(selectEl.value),
   });
@@ -112,7 +112,7 @@ function clickSubImages() {
   const subImages = document.querySelectorAll(".subImage");
 
   // 각 서브 이미지에 클릭 이벤트 리스너 추가
-  subImages.forEach((img) => {
+  subImages.forEach(img => {
     img.addEventListener("click", function () {
       // 메인 이미지의 src 속성을 클릭된 이미지의 src로 변경
       document.getElementById("main-image").src = this.src;
