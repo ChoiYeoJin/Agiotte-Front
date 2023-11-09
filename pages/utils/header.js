@@ -4,6 +4,7 @@ import "../index.css";
 import logo from "/imgs/logo.png";
 import loginButton from "/imgs/login_button.png";
 import * as storage from "../utils/storage";
+import * as api from "../utils/api";
 
 document.querySelector("#header").innerHTML = `
     <div class="header w-full h-[60px] lg:h-[170px]">
@@ -16,7 +17,7 @@ document.querySelector("#header").innerHTML = `
         <div class="hidden lg:block w-[450px]">
           <i class="fa-solid fa-magnifying-glass absolute ml-[26rem] mt-6"></i>
           <input
-            class="w-full h-10 mt-3 px-2 rounded-[5px] bg-[#efefef]"
+            class="search-bar w-full h-10 mt-3 px-2 rounded-[5px] bg-[#efefef]"
             type="text"
             style="display: inline-block"
             placeholder="찾고싶은 중고물품을 검색하세요"
@@ -179,7 +180,7 @@ const token = storage.getItem("token");
 const logoutEl = document.querySelector(".logout");
 const logoutHeaderEl = document.querySelector(".header-logout");
 const loginHeaderEl = document.querySelector(".header-login");
-
+const searchBarEl = document.querySelector(".search-bar");
 if (token === null) {
   //logout상태
   logoutHeaderEl.classList.remove("hidden");
@@ -236,3 +237,14 @@ mobileLogoutEl.addEventListener("click", clickLogoutEvent);
 mobileUserMenuEl.addEventListener("mouseleave", () => {
   mobileUserMenuEl.classList.add("hidden");
 });
+
+const enterSearchEvent = (e) => {
+  if (e.key == "Enter" || e.keyCode == "13") {
+    api.sendGetWithQuery("/products/search", {
+      name: searchBarEl.value,
+      page: 1,
+    });
+  }
+};
+
+searchBarEl.addEventListener("keydown", enterSearchEvent);
