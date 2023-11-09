@@ -64,12 +64,13 @@ function getPayInfo() {
 
 async function clickPayButtonEvent(e) {
   const cart = storage.getItem("cart");
+  console.log(cart);
   const productInfos = cart.map((item) => {
     return {
       Price: item.price,
       Amount: item.amount,
       ProductName: item.name,
-      ProductImg: item.img,
+      ProductImg: item.img[0],
       Detail: item.detail,
       Condition: item.Condition,
     };
