@@ -69,7 +69,7 @@ async function initMain() {
 
   data.products.forEach((item) => {
     cardFrame.innerHTML += getCardHTML(
-      item.id,
+      item.seq,
       item.name,
       item.price,
       api.IMG_URL + item.img[0],
