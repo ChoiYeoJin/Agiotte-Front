@@ -89,7 +89,7 @@ function clickCartButtonEvent(e) {
   storage.updateCart(details.seq, {
     name: details.name,
     id: details.seq,
-    img: details.img.map((item) => api.IMG_URL + item),
+    img: api.IMG_URL + details.img[0],
     price: details.price,
     amount: Number(selectEl.value),
   });
