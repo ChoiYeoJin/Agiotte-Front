@@ -30,8 +30,7 @@ function addToCart(item) {
   } else {
     cart.push(item);
   }
-
-  renderCart();
+  localStorage.setItem("cart", JSON.stringify(cart));
 }
 
 document.body.addEventListener("click", e => {
@@ -50,7 +49,10 @@ function updateQuantity(index, operation) {
     } else if (operation === "decrease") {
       item.amount > 1 ? item.amount-- : alert("최소 수량은 1개입니다.");
     }
+    cart[index] = item;
+
     localStorage.setItem("cart", JSON.stringify(cart));
+
     renderCart();
   }
 }
@@ -58,7 +60,7 @@ function updateQuantity(index, operation) {
 document.body.addEventListener("click", e => {
   if (e.target.matches(".remove-button")) {
     const productId = e.target.getAttribute("data-product-id");
-    cart = removeCartItem(productId);
+    cart = removeCartItem(productId); // removeCartItem 함수의 반환값으로 cart를 업데이트합니다.
     renderCart();
   }
 });
@@ -117,17 +119,22 @@ function renderCart() {
         </div>
 
         <div class="flex-grow flex items-center justify-end">
-          <button onClick="${removeCartItem(
-            item.productId
-          )}" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
-          삭제
-          </button>
+          
+<button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center" onclick="removeProduct(${
+        item.productId
+      })">
+삭제
+</button>
         </div>
       </div>
 
       `;
     })
     .join("");
+  window.removeProduct = function (productId) {
+    cart = removeCartItem(productId);
+    renderCart();
+  };
 
   cartTotalElement.innerHTML = `
       <div class="cart-total flex text-center justify-center border-b items-center px-20">

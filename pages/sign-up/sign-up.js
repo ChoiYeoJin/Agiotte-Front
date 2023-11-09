@@ -86,12 +86,6 @@ const registerUser = e => {
     return false;
   }
 
-  // 입력 검증
-  // if (!name || !id || !email || !password || !passwordCheck) {
-  //     alert("모든 필드를 입력해주세요.");
-  //     return;
-  // }
-
   // 아이디 사용 가능 여부 검증
   if (!isIdAvailable) {
     alert("아이디 중복 확인이 필요합니다.");
@@ -115,18 +109,15 @@ const registerUser = e => {
   //     return;
   // }
 
-  // 비밀번호 확인
   if (password !== passwordCheck) {
     alert("비밀번호가 일치하지 않습니다.");
     return;
   }
 
-  // 마케팅 활용 동의 체크박스가 체크되었는지 확인
   const marketingAgreement = document.querySelector(
     'input[name="marketing"]'
   ).checked;
 
-  // 백엔드에 보낼 데이터 객체 생성
   const data = {
     name: name,
     id: id,
