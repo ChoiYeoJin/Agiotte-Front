@@ -140,7 +140,7 @@ function renderCart() {
  
         <div class="p-8">
           <p>총 주문금액</p>
-          <p class="font-bold text-lg">${totalAmount}원</p>
+          <p class="font-bold text-lg">${totalAmount.toLocaleString()}원</p>
         </div>
     </div>
 

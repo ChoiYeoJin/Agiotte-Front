@@ -70,7 +70,6 @@ mobileMenuEl.addEventListener("mouseout", (e) => {
 });
 
 mobileHeaderEl.addEventListener("mouseleave", (e) => {
-  console.log(e.relatedTarget);
   if (isMouseOver) {
     mobileMenuEl.classList.add("hidden");
   }

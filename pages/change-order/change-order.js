@@ -86,6 +86,7 @@ const clickZipButtonEvent = () => {
 const zipCodeButton = document.querySelector(".zip-code-button");
 const changeOrderButton = document.querySelector(".change-order-button");
 zipCodeButton.addEventListener("click", clickZipButtonEvent);
+
 changeOrderButton.addEventListener("click", async () => {
   const user = await api.sendGet("/users");
   fullAddr += zipEl.value + addrEl.value;
@@ -105,14 +106,13 @@ changeOrderButton.addEventListener("click", async () => {
       }),
     });
 
-    console.log(await response.text());
-
-    // if (response.ok) {
-    //   console.log("request 성공" + data);
-    //   return data;
-    // } else {
-    //   console.log("실패");
-    // }
+    if (response.ok) {
+      alert("주소지 변경에 성공했습니다!");
+      location.href = "/order-list/";
+      return data;
+    } else {
+      alert("주소지 변경에 실패했습니다. 관리자에게 문의해주세요!");
+    }
   } catch (error) {
     console.error(`오류발생 ${error}`);
   }
@@ -129,15 +129,13 @@ cancelOrderButton.addEventListener("click", async () => {
       },
     });
 
-    //const data = await response.text();
-    console.log(await response.text());
-
-    // if (response.ok) {
-    //   console.log("request 성공" + data);
-    //   return data;
-    // } else {
-    //   console.log("실패");
-    // }
+    if (response.ok) {
+      alert("주문이 취소되었습니다!");
+      location.href = "/order-list/";
+      return data;
+    } else {
+      alert("주문 취소에 실패했습니다. 관리자에게 문의해주세요!");
+    }
   } catch (error) {
     //console.error(`오류발생 ${error}`);
   }

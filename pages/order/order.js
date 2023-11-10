@@ -77,7 +77,7 @@ async function clickPayButtonEvent(e) {
         Condition: "좋은상태",
       };
     });
-    console.log(productInfos);
+
     const response = await api.sendPostReturnResponse(`/orders`, {
       Name: user.UserName,
       Address: user.Address,
@@ -115,6 +115,7 @@ async function clickPayButtonEvent(e) {
 
   if (isSuccess) {
     alert("결제 성공!");
+    storage.removeItem("cart");
     window.location.href = "order-success.html?last-img=" + lastImg;
   } else {
     alert("결제 실패!");

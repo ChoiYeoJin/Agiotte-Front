@@ -97,7 +97,7 @@ function clickCartButtonEvent(e) {
 
   console.log("cart");
   console.log(storage.getItem("cart"));
-  alert("장바구니로 이동하시겠습니까?");
+  alert("장바구니에 상품이 담겼습니다!");
 }
 
 function clickBuyButtonEvent(e) {
