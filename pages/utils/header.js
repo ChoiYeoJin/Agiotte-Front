@@ -38,7 +38,7 @@ document.querySelector("#header").innerHTML = `
           <div class="header-login mt-3">
             <a class="logout cursor-pointer">로그아웃</a>
             <a class="mx-3" href="/order-list/">마이페이지</a>
-            <a class="px-5" href="/cart/"><i class="fa-solid fa-bag-shopping  pb-[50px]"></i></a>
+            <a class="" href="/cart/"><i class="fa-solid fa-bag-shopping  pb-[50px]"></i></a>
           </div>
           
           
@@ -121,7 +121,7 @@ document.querySelector("#header").innerHTML = `
         </nav>
       </div>
       <div
-        class="mobile-menu w-full h-[200px] bg-white absolute pt-3 pl-2 z-10 hidden md:hidden"
+        class="mobile-menu w-full h-[200px] bg-white absolute pt-3 pl-2 z-10 hidden lg:hidden"
       >
         <div class="bg-white pt-5 pl-5 md:pl-20 flex space-x-10">
           <div>
