@@ -11,9 +11,8 @@ async function getOrderDetails(Id) {
   try {
     const data = await api.sendGet(`/orders`);
 
-    console.log(data);
     const targetData = data.find((item) => item.shortId === id);
-    console.log(targetData);
+
     document.querySelector(".order-name").textContent = createProdName(
       targetData.ProductInfos
     );
@@ -139,7 +138,7 @@ cancelOrderButton.addEventListener("click", async () => {
     });
 
     const data = await response.text();
-    console.log(data);
+
     if (response.ok) {
       console.log("request 성공" + data);
       return data;
