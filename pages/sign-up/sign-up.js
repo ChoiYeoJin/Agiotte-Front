@@ -137,6 +137,7 @@ const registerUser = async e => {
     if (response.ok) {
       // 가입 OK
       const result = await response.text();
+      location.href = "/login/";
       console.log(result);
     } else {
       if (response.status === 404) {
