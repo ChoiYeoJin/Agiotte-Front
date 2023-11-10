@@ -89,12 +89,6 @@ zipCodeButton.addEventListener("click", clickZipButtonEvent);
 changeOrderButton.addEventListener("click", async () => {
   const user = await api.sendGet("/users");
   fullAddr += zipEl.value + addrEl.value;
-  // const data = await api.sendPut("/orders", {
-  //   orderId: id,
-  //   Name: user.UserName,
-  //   Address: fullAddr,
-  //   Phone: user.Phone,
-  // });
 
   try {
     const response = await fetch(`${api.API_URL}/orders`, {
@@ -111,15 +105,14 @@ changeOrderButton.addEventListener("click", async () => {
       }),
     });
 
-    const data = response.text();
-    //const data = await response.json();
+    console.log(await response.text());
 
-    if (response.ok) {
-      console.log("request 성공" + data);
-      return data;
-    } else {
-      console.log("실패");
-    }
+    // if (response.ok) {
+    //   console.log("request 성공" + data);
+    //   return data;
+    // } else {
+    //   console.log("실패");
+    // }
   } catch (error) {
     console.error(`오류발생 ${error}`);
   }
@@ -134,17 +127,17 @@ cancelOrderButton.addEventListener("click", async () => {
         "Content-Type": "application/json",
         authorization: storage.getItem("token"),
       },
-      body: {},
     });
 
-    const data = await response.text();
+    //const data = await response.text();
+    console.log(await response.text());
 
-    if (response.ok) {
-      console.log("request 성공" + data);
-      return data;
-    } else {
-      console.log("실패");
-    }
+    // if (response.ok) {
+    //   console.log("request 성공" + data);
+    //   return data;
+    // } else {
+    //   console.log("실패");
+    // }
   } catch (error) {
     //console.error(`오류발생 ${error}`);
   }

@@ -16,13 +16,20 @@ data.forEach((item) => {
   const prod = item.ProductInfos[0];
 
   const div = document.createElement("div");
+  let orderState = "";
+  if (item.Cancel === true) {
+    orderState = "주문취소";
+  } else {
+    orderState = item.Status;
+  }
+
   div.innerHTML += getOrderCardHTML(
     item.shortId,
     item.createdAt.substr(0, 10),
     prod.ProductImg,
     createProdName(prod.ProductName, item.ProductInfos.length),
     item.TotalPrice,
-    item.Status
+    orderState
   );
   frag.appendChild(div);
 });
@@ -31,7 +38,6 @@ boxEl.appendChild(frag);
 
 const orderChangeBtnEls = document.querySelectorAll(".order-change-button");
 const clickOrderChangeButtonEvent = (e) => {
-  alert(e.target.getAttribute("id"));
   location.href = `../change-order/?order-id=${e.target.getAttribute("id")}`;
 };
 
