@@ -77,7 +77,7 @@ async function clickPayButtonEvent(e) {
         Condition: "좋은상태",
       };
     });
-    console.log(productInfos);
+
     const response = await api.sendPostReturnResponse(`/orders`, {
       Name: user.UserName,
       Address: user.Address,
