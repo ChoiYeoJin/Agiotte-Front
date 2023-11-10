@@ -98,7 +98,7 @@ changeOrderButton.addEventListener("click", async () => {
   // });
 
   try {
-    const response = await fetch(`${api.API_URL}/orders`, {
+    const response = await fetch(`/orders`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -129,7 +129,7 @@ changeOrderButton.addEventListener("click", async () => {
 const cancelOrderButton = document.querySelector(".cancel-order-button");
 cancelOrderButton.addEventListener("click", async () => {
   try {
-    const response = await fetch(`${api.API_URL}/orders/${id}`, {
+    const response = await fetch(`/orders/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
