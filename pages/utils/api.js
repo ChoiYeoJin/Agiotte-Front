@@ -19,11 +19,15 @@ const checkTokenHead = () => {
   }
 };
 
-export const sendPost = async (url, objData) => {
+export const sendPost = async (url, objData = null) => {
   try {
     let headers = {};
     const token = storage.getItem("token");
-    if (url === "/users/login") {
+    if (
+      url === "/users/login" ||
+      url === "/users/main" ||
+      url.includes("/join")
+    ) {
       headers = {
         "Content-Type": "application/json",
       };
@@ -54,34 +58,7 @@ export const sendPost = async (url, objData) => {
   }
 };
 
-export const sendPostReturnResponse = async (url, objData) => {
-  try {
-    let headers = {};
-    const token = storage.getItem("token");
-    if (url === "/users/login") {
-      headers = {
-        "Content-Type": "application/json",
-      };
-    } else {
-      headers = {
-        "Content-Type": "application/json",
-        authorization: `${token}`,
-      };
-    }
-
-    const response = await fetch(`${API_URL}${url}`, {
-      method: "POST",
-      headers,
-      body: JSON.stringify(objData),
-    });
-
-    return response;
-  } catch (error) {
-    console.error(`${url} 오류발생 ${error}`);
-  }
-};
-
-const createQueryString = (params) => {
+const createQueryString = params => {
   return Object.entries(params)
     .map(
       ([key, value]) =>
