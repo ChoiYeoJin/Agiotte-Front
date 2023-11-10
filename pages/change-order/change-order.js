@@ -11,9 +11,8 @@ async function getOrderDetails(Id) {
   try {
     const data = await api.sendGet(`/orders`);
 
-    console.log(data);
     const targetData = data.find((item) => item.shortId === id);
-    console.log(targetData);
+
     document.querySelector(".order-name").textContent = createProdName(
       targetData.ProductInfos
     );
@@ -90,15 +89,9 @@ zipCodeButton.addEventListener("click", clickZipButtonEvent);
 changeOrderButton.addEventListener("click", async () => {
   const user = await api.sendGet("/users");
   fullAddr += zipEl.value + addrEl.value;
-  // const data = await api.sendPut("/orders", {
-  //   orderId: id,
-  //   Name: user.UserName,
-  //   Address: fullAddr,
-  //   Phone: user.Phone,
-  // });
 
   try {
-    const response = await fetch(`/orders`, {
+    const response = await fetch(`${api.API_URL}/orders`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -112,15 +105,14 @@ changeOrderButton.addEventListener("click", async () => {
       }),
     });
 
-    const data = response.text();
-    //const data = await response.json();
+    console.log(await response.text());
 
-    if (response.ok) {
-      console.log("request 성공" + data);
-      return data;
-    } else {
-      console.log("실패");
-    }
+    // if (response.ok) {
+    //   console.log("request 성공" + data);
+    //   return data;
+    // } else {
+    //   console.log("실패");
+    // }
   } catch (error) {
     console.error(`오류발생 ${error}`);
   }
@@ -129,23 +121,23 @@ changeOrderButton.addEventListener("click", async () => {
 const cancelOrderButton = document.querySelector(".cancel-order-button");
 cancelOrderButton.addEventListener("click", async () => {
   try {
-    const response = await fetch(`/orders/${id}`, {
+    const response = await fetch(`${api.API_URL}/orders/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
         authorization: storage.getItem("token"),
       },
-      body: {},
     });
 
-    const data = await response.text();
-    console.log(data);
-    if (response.ok) {
-      console.log("request 성공" + data);
-      return data;
-    } else {
-      console.log("실패");
-    }
+    //const data = await response.text();
+    console.log(await response.text());
+
+    // if (response.ok) {
+    //   console.log("request 성공" + data);
+    //   return data;
+    // } else {
+    //   console.log("실패");
+    // }
   } catch (error) {
     //console.error(`오류발생 ${error}`);
   }
