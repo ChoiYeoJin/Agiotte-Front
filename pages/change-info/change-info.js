@@ -14,17 +14,23 @@ const zipBtnEl = document.querySelector(".zip-button");
 const modifyBtnEl = document.querySelector(".modify-button");
 const withdrawBtnEl = document.querySelector(".withdraw-button");
 
-const userName = storage.getItem("user-name");
 const userId = storage.getItem("user-id");
 
-memNameEl.innerText = userName;
-memIdEl.innerText = userId;
+const userData = await api.sendGet("/users");
+
+let fullAddr = "";
+
+console.log(userData);
+if (userData !== undefined) {
+  memNameEl.innerText = userData.UserName;
+  memIdEl.innerText = userData.UserId;
+}
 
 const clickWithdrawButtonEvent = async () => {
   //await api.sendDelete(`/users/${userId}`);
   storage.clear();
   alert("회원탈퇴 성공!");
-  location.href = "../main/";
+  location.href = "/main/";
 };
 
 const clickModifyButtonEvent = async () => {
@@ -55,6 +61,15 @@ const clickModifyButtonEvent = async () => {
     addrEl.focus();
     return false;
   }
+  fullAddr += zipEl.value + addrEl.value;
+  const data = api.sendPut("/users", {
+    UserId: userData.UserId,
+    UserName: userData.UserName,
+    Address: fullAddr,
+    HashPwd: passCheckEl.value,
+    Email: emailEl.value,
+  });
+
   alert("수정되었습니다!");
   //await api.sendPut('/')
   window.location.reload();

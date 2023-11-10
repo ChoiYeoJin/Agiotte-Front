@@ -1,6 +1,7 @@
 //서버에서 card 불러오기
 
 import { getCardHTML } from "../utils/card";
+import * as api from "../utils/api";
 
 //일단 없으니까 그냥 가져온셈 침
 const cards = [
@@ -42,25 +43,37 @@ const cards = [
   },
 ];
 
-initMain();
+const data = await api.sendGetWithQuery("/categories/products", {
+  en_name: "goods",
+  page: 1,
+});
+
+await initMain();
 const cardElements = document.querySelectorAll(".card");
 
-function initMain() {
+async function initMain() {
   const cardBox = document.querySelector(".card-box");
 
   const cardFrame = document.createElement("div");
-  cardFrame.classList.add("flex");
-  cardFrame.classList.add("flex-wrap");
-  cardFrame.classList.add("space-x-5");
+  cardFrame.classList.add("grid");
+  cardFrame.classList.add("lg:grid-cols-6");
+  cardFrame.classList.add("md:grid-cols-3");
+  cardFrame.classList.add("gap-5");
   cardFrame.classList.add("justify-center");
 
-  cards.forEach((item) => {
+  const data = await api.sendGetWithQuery("/categories/products", {
+    en_name: "goods",
+    page: 1,
+  });
+  console.log(data);
+
+  data.products.forEach((item) => {
     cardFrame.innerHTML += getCardHTML(
-      item.id,
+      item.seq,
       item.name,
       item.price,
-      item.img,
-      item.tag
+      api.IMG_URL + item.img[0],
+      item.condition
     );
   });
 

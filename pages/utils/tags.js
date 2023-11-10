@@ -25,7 +25,7 @@ export function getTagHTML(tagState) {
   let localState = null;
   if (tagState === "새상품") {
     localState = "new";
-  } else if (tagState === "좋은상태") {
+  } else if (tagState === "좋은 상태") {
     localState = "good";
   } else if (tagState === "보통") {
     localState = "normal";

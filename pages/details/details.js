@@ -16,19 +16,20 @@ const selectEl = document.querySelector("select");
 const totalEl = document.querySelector(".total-price");
 const detailInfoEl = document.querySelector(".detail-info");
 
+console.log(details);
 const localePrice = Number(details.price).toLocaleString();
 
-const imgs = details.productImg;
-//img가 없는 경우??
-imgEl.setAttribute("src", imgs[0]);
+const imgs = details.img;
+
+imgEl.setAttribute("src", api.IMG_URL + imgs[0]);
 for (let i = 0; i < imgs.length; i++) {
-  subImgEls[i].setAttribute("src", imgs[i]);
+  subImgEls[i].setAttribute("src", api.IMG_URL + imgs[i]);
   subImgEls[i].addEventListener("click", (e) => {
     imgEl.setAttribute("src", e.target.getAttribute("src"));
   });
 }
 
-subjectEl.innerText = details.productName;
+subjectEl.innerText = details.name;
 tagEl.innerHTML = getTagHTML(details.condition);
 priceEl.innerText = localePrice + "원";
 totalEl.innerText = localePrice;
@@ -64,7 +65,9 @@ buyButtonEl.addEventListener("click", clickBuyButtonEvent);
 
 async function fetchDetails(id) {
   //데이터를 가져온셈 치자
+  const data = await api.sendGet(`/products/${id}`);
   //const details = await api.sendGet(`/products/${id}`)
+  console.log(data);
   const details = {
     productName: "귀여운 원숭이 인형 팝니다",
     productImg: ["/imgs/test2.jpg", "/imgs/carrot.png"],
@@ -74,7 +77,7 @@ async function fetchDetails(id) {
     amount: 5,
   };
 
-  return Promise.resolve(details);
+  return data;
 }
 
 function changeQuantityEvent(e) {
@@ -84,27 +87,28 @@ function changeQuantityEvent(e) {
 
 //storage.clear();
 function clickCartButtonEvent(e) {
-  storage.updateCart(productId, {
-    productName: details.productName,
-    productId: productId,
-    productImg: details.productImg,
+  storage.updateCart(details.seq, {
+    name: details.name,
+    id: details.seq,
+    img: api.IMG_URL + details.img[0],
     price: details.price,
     amount: Number(selectEl.value),
   });
 
+  console.log("cart");
   console.log(storage.getItem("cart"));
   //alert("장바구니로 이동하시겠습니까?");
 }
 
 function clickBuyButtonEvent(e) {
   storage.setItem("buyNow", {
-    productName: details.productName,
-    productId: productId,
-    productImg: details.productImg,
+    name: details.name,
+    id: details.seq,
+    img: imgs[0],
     price: details.price,
     amount: Number(selectEl.value),
   });
-  location.href = "../order/?buyNow=true";
+  location.href = "/order/?buyNow=true";
 }
 
 function clickSubImages() {
