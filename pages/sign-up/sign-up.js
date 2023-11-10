@@ -1,6 +1,6 @@
 import { checkEmail } from "../utils/commonRegex.js";
 import { checkPassword } from "../utils/commonRegex.js";
-import { API_URL, sendPost } from "../utils/api";
+import { API_URL, sendPost } from "../utils/api.js";
 
 let isIdAvailable = false; // 아이디 중복 여부를 저장하는 변수
 

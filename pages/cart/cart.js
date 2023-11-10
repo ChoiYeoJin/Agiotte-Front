@@ -1,6 +1,6 @@
-import { addCommasToNumber } from "../utils/addCommasToNumber";
-import { getTagHTML } from "../utils/tags";
-import { getItem, removeCartItem } from "../utils/storage";
+import { addCommasToNumber } from "../utils/addCommasToNumber.js";
+import { getTagHTML } from "../utils/tags.js";
+import { getItem, removeCartItem } from "../utils/storage.js";
 
 let cart = getItem("cart") || [];
 
@@ -21,7 +21,7 @@ function addToCart(item) {
     return;
   }
 
-  const existingItem = cart.find((cartItem) => cartItem.name === item.name);
+  const existingItem = cart.find(cartItem => cartItem.name === item.name);
 
   if (existingItem) {
     existingItem.quantity += item.quantity;
@@ -31,7 +31,7 @@ function addToCart(item) {
   localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-document.body.addEventListener("click", (e) => {
+document.body.addEventListener("click", e => {
   if (e.target.matches(".quantity-button")) {
     const index = Number(e.target.getAttribute("data-index"));
     const operation = e.target.getAttribute("data-operation");
@@ -55,7 +55,7 @@ function updateQuantity(index, operation) {
   }
 }
 
-document.body.addEventListener("click", (e) => {
+document.body.addEventListener("click", e => {
   if (e.target.matches(".remove-button")) {
     const productId = e.target.getAttribute("data-product-id");
     cart = removeCartItem(productId); // removeCartItem 함수의 반환값으로 cart를 업데이트합니다.
