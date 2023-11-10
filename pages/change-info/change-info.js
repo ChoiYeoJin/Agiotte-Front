@@ -18,13 +18,12 @@ const userId = storage.getItem("user-id");
 
 const userData = await api.sendGet("/users");
 
-if (userData != undefined) {
-  const userData = await api.sendGet("/users", userId);
+let fullAddr = "";
 
-  console.log(userData);
-
+console.log(userData);
+if (userData !== undefined) {
   memNameEl.innerText = userData.UserName;
-  memIdEl.innerText = userId;
+  memIdEl.innerText = userData.UserId;
 }
 
 const clickWithdrawButtonEvent = async () => {
@@ -62,6 +61,15 @@ const clickModifyButtonEvent = async () => {
     addrEl.focus();
     return false;
   }
+  fullAddr += zipEl.value + addrEl.value;
+  const data = api.sendPut("/users", {
+    UserId: userData.UserId,
+    UserName: userData.UserName,
+    Address: fullAddr,
+    HashPwd: passCheckEl.value,
+    Email: emailEl.value,
+  });
+
   alert("수정되었습니다!");
   //await api.sendPut('/')
   window.location.reload();
