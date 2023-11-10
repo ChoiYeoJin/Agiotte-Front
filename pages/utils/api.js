@@ -129,6 +129,34 @@ export const sendGet = async (url, queryData = "") => {
   }
 };
 
+export const sendGetResponse = async (url, queryData = "") => {
+  try {
+    let localUrl = `${API_URL}${url}`;
+
+    if (queryData !== "") {
+      localUrl += "/" + queryData;
+    }
+
+    console.log(localUrl);
+
+    const response = await fetch(localUrl, {
+      method: "GET",
+      headers: checkTokenHead(),
+    });
+
+    return await response;
+
+    if (response.ok) {
+      console.log("request 성공" + data);
+      return data;
+    } else {
+      console.log("실패" + data);
+    }
+  } catch (error) {
+    console.error(`${url}/${queryData} 오류발생 ${error}`);
+  }
+};
+
 export const sendPut = async (url, objData) => {
   try {
     const response = await fetch(`${API_URL}${url}`, {

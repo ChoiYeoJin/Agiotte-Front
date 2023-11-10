@@ -63,11 +63,13 @@ function getPayInfo() {
 }
 
 let lastImg = "";
-
+let isSuccess = false;
 async function clickPayButtonEvent(e) {
   const cart = storage.getItem("cart");
-  console.log(cart);
+
   if (buyNow !== "true") {
+    console.log("cart");
+    console.log(cart);
     const productInfos = cart.map((item) => {
       return {
         Price: item.price,
@@ -78,20 +80,21 @@ async function clickPayButtonEvent(e) {
         Condition: "좋은상태",
       };
     });
-
-    const response = await api.sendPost("/orders", {
+    console.log(productInfos);
+    const response = await api.sendPostReturnResponse(`/orders`, {
       Name: user.UserName,
       Address: user.Address,
       Phone: user.Phone === undefined ? "전화번호 없음" : user.Phone,
       Email: user.Email,
       ProductInfos: productInfos,
     });
+    if (response.status === 200) isSuccess = true;
 
-    lastImg = item.productImg;
+    lastImg = encodeURIComponent(productInfos[0].ProductImg);
   } else {
     const prod = storage.getItem("buyNow");
 
-    const response = await api.sendPost("/orders", {
+    const response = await api.sendPostReturnResponse(`/orders`, {
       Name: user.UserName,
       Address: user.Address,
       Phone: user.Phone === undefined ? "전화번호 없음" : user.Phone,
@@ -101,17 +104,19 @@ async function clickPayButtonEvent(e) {
           Price: prod.price,
           Amount: prod.amount,
           ProductName: prod.name,
-          ProductImg: prod.img,
+          ProductImg: encodeURIComponent(api.IMG_URL + prod.img),
           Detail: "디테일",
           Condition: "좋은상태",
         },
       ],
     });
 
-    lastImg = prod.img;
+    if (response.status === 200) isSuccess = true;
+
+    lastImg = encodeURIComponent(api.IMG_URL + prod.img);
   }
 
-  if (response !== undefined) {
+  if (isSuccess) {
     alert("결제 성공!");
     window.location.href = "order-success.html?last-img=" + lastImg;
   } else {

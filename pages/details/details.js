@@ -16,6 +16,7 @@ const selectEl = document.querySelector("select");
 const totalEl = document.querySelector(".total-price");
 const detailInfoEl = document.querySelector(".detail-info");
 
+console.log(details);
 const localePrice = Number(details.price).toLocaleString();
 
 const imgs = details.img;
