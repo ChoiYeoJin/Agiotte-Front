@@ -1,7 +1,6 @@
-import * as storage from "../utils/storage";
-import * as api from "../utils/api";
+import * as storage from "../utils/storage.js";
+import * as api from "../utils/api.js";
 
-//user정보는 보안상 이때 가져와야겠지? 임시데이터 구매자정보
 const user = await api.sendGet("/users");
 
 const urlParams = new URLSearchParams(window.location.search);

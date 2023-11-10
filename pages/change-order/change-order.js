@@ -1,5 +1,6 @@
-import * as api from "../utils/api";
-import * as storage from "../utils/storage";
+import * as api from "../utils/api.js";
+import * as storage from "../utils/storage.js";
+
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get("order-id");
 

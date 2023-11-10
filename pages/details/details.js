@@ -1,6 +1,6 @@
-import * as api from "../utils/api";
-import * as storage from "../utils/storage";
-import { getTagHTML } from "../utils/tags";
+import * as api from "../utils/api.js";
+import * as storage from "../utils/storage.js";
+import { getTagHTML } from "../utils/tags.js";
 
 const urlParams = new URLSearchParams(window.location.search);
 const productId = Number(urlParams.get("id"));

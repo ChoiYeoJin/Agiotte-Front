@@ -1,5 +1,5 @@
-import * as storage from "../utils/storage";
-import * as api from "../utils/api";
+import * as storage from "../utils/storage.js";
+import * as api from "../utils/api.js";
 import { checkPassword, checkEmail } from "../utils/commonRegex.js";
 
 const memNameEl = document.querySelector(".member-name");

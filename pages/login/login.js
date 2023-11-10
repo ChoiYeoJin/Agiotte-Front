@@ -1,5 +1,5 @@
-import * as api from "../utils/api";
-import * as storage from "../utils/storage";
+import * as api from "../utils/api.js";
+import * as storage from "../utils/storage.js";
 
 const loginButtonEl = document.querySelector(".login-button");
 

@@ -1,8 +1,8 @@
 //TODO: 무한스크롤 동작은 하지만 Type에러가 뜨는데 해당부분 확인해보기
 //서버에서 card 불러오기
 
-import { getCardHTML } from "../utils/card";
-import * as api from "../utils/api";
+import { getCardHTML } from "../utils/card.js";
+import * as api from "../utils/api.js";
 
 let page = 1;
 const urlParams = new URLSearchParams(window.location.search);
