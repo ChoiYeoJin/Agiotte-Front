@@ -4,7 +4,6 @@ import * as api from "../utils/api";
 //user정보는 보안상 이때 가져와야겠지? 임시데이터 구매자정보
 const user = await api.sendGet("/users");
 
-console.log(user);
 const urlParams = new URLSearchParams(window.location.search);
 const buyNow = urlParams.get("buyNow");
 
@@ -54,7 +53,7 @@ function getPayInfo() {
     };
   } else {
     const prod = storage.getItem("buyNow");
-    console.log(prod);
+
     return {
       name: prod.name,
       totalPrice: (prod.price * prod.amount).toLocaleString(),
@@ -68,8 +67,6 @@ async function clickPayButtonEvent(e) {
   const cart = storage.getItem("cart");
 
   if (buyNow !== "true") {
-    console.log("cart");
-    console.log(cart);
     const productInfos = cart.map((item) => {
       return {
         Price: item.price,

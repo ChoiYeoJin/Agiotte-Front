@@ -58,7 +58,46 @@ export const sendPost = async (url, objData = null) => {
   }
 };
 
-const createQueryString = params => {
+export const sendPostReturnResponse = async (url, objData = null) => {
+  try {
+    let headers = {};
+    const token = storage.getItem("token");
+    if (
+      url === "/users/login" ||
+      url === "/users/main" ||
+      url.includes("/join")
+    ) {
+      headers = {
+        "Content-Type": "application/json",
+      };
+    } else {
+      headers = {
+        "Content-Type": "application/json",
+        authorization: `${token}`,
+      };
+    }
+
+    const response = await fetch(`${API_URL}${url}`, {
+      method: "POST",
+      headers,
+      body: JSON.stringify(objData),
+    });
+
+    return await response;
+
+    if (response.ok) {
+      console.log("request 성공" + data);
+      return data;
+    } else {
+      console.error(response);
+      console.log("실패");
+    }
+  } catch (error) {
+    console.error(`${url} 오류발생 ${error}`);
+  }
+};
+
+const createQueryString = (params) => {
   return Object.entries(params)
     .map(
       ([key, value]) =>

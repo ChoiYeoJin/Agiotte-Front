@@ -65,7 +65,6 @@ async function initMain() {
     en_name: "goods",
     page: 1,
   });
-  console.log(data);
 
   data.products.forEach((item) => {
     cardFrame.innerHTML += getCardHTML(
@@ -82,7 +81,7 @@ async function initMain() {
 
 function clickCardEvent(e) {
   //class 속성에 상품id 넣어둬야
-  console.log(e.target);
+
   const id = 1;
   //상세페이지로
 }
