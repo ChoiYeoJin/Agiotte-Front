@@ -28,7 +28,7 @@ data.forEach((item) => {
     item.createdAt.substr(0, 10),
     prod.ProductImg,
     createProdName(prod.ProductName, item.ProductInfos.length),
-    item.TotalPrice,
+    item.TotalPrice.toLocaleString(),
     orderState
   );
   frag.appendChild(div);

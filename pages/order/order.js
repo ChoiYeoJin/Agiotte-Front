@@ -1,5 +1,6 @@
 import * as storage from "../utils/storage.js";
 import * as api from "../utils/api.js";
+import { clickZipButtonEvent } from "../utils/address.js";
 
 const user = await api.sendGet("/users");
 
@@ -86,7 +87,7 @@ async function clickPayButtonEvent(e) {
     });
     if (response.status === 200) isSuccess = true;
 
-    lastImg = encodeURIComponent(productInfos[0].ProductImg);
+    lastImg = productInfos[0].ProductImg;
   } else {
     const prod = storage.getItem("buyNow");
 
@@ -100,7 +101,7 @@ async function clickPayButtonEvent(e) {
           Price: prod.price,
           Amount: prod.amount,
           ProductName: prod.name,
-          ProductImg: encodeURIComponent(api.IMG_URL + prod.img),
+          ProductImg: prod.img,
           Detail: "디테일",
           Condition: "좋은상태",
         },
@@ -109,7 +110,7 @@ async function clickPayButtonEvent(e) {
 
     if (response.status === 200) isSuccess = true;
 
-    lastImg = encodeURIComponent(api.IMG_URL + prod.img);
+    lastImg = prod.img;
   }
 
   if (isSuccess) {

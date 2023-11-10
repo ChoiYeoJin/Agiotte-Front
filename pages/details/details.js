@@ -104,7 +104,7 @@ function clickBuyButtonEvent(e) {
   storage.setItem("buyNow", {
     name: details.name,
     id: details.seq,
-    img: imgs[0],
+    img: api.IMG_URL + imgs[0],
     price: details.price,
     amount: Number(selectEl.value),
   });
