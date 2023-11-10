@@ -67,7 +67,7 @@ function clickFindButton(e) {
       .catch(err => console.error(err));
   } else {
     alert('회원정보가 존재하지 않습니다.');
-    location.href = '/login/';
+    location.href = '/find-id/';
   }
 }
 
