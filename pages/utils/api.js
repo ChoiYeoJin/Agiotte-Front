@@ -54,6 +54,33 @@ export const sendPost = async (url, objData) => {
   }
 };
 
+export const sendPostReturnResponse = async (url, objData) => {
+  try {
+    let headers = {};
+    const token = storage.getItem("token");
+    if (url === "/users/login") {
+      headers = {
+        "Content-Type": "application/json",
+      };
+    } else {
+      headers = {
+        "Content-Type": "application/json",
+        authorization: `${token}`,
+      };
+    }
+
+    const response = await fetch(`${API_URL}${url}`, {
+      method: "POST",
+      headers,
+      body: JSON.stringify(objData),
+    });
+
+    return response;
+  } catch (error) {
+    console.error(`${url} 오류발생 ${error}`);
+  }
+};
+
 const createQueryString = (params) => {
   return Object.entries(params)
     .map(
@@ -113,6 +140,34 @@ export const sendGet = async (url, queryData = "") => {
     });
 
     const data = await response.json();
+
+    if (response.ok) {
+      console.log("request 성공" + data);
+      return data;
+    } else {
+      console.log("실패" + data);
+    }
+  } catch (error) {
+    console.error(`${url}/${queryData} 오류발생 ${error}`);
+  }
+};
+
+export const sendGetResponse = async (url, queryData = "") => {
+  try {
+    let localUrl = `${API_URL}${url}`;
+
+    if (queryData !== "") {
+      localUrl += "/" + queryData;
+    }
+
+    console.log(localUrl);
+
+    const response = await fetch(localUrl, {
+      method: "GET",
+      headers: checkTokenHead(),
+    });
+
+    return await response;
 
     if (response.ok) {
       console.log("request 성공" + data);
