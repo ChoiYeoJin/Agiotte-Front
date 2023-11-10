@@ -20,7 +20,6 @@ const userData = await api.sendGet("/users");
 
 let fullAddr = "";
 
-console.log(userData);
 if (userData !== undefined) {
   memNameEl.innerText = userData.UserName;
   memIdEl.innerText = userData.UserId;
