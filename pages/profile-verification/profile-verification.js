@@ -26,25 +26,33 @@ function clickVerificationButton(e) {
 
   // API Request
   const params = {
-    UserId: String,
-    HashPwd: String,
+      UserId: id,
+      HashPwd: password,
   };
 
-  fetch(`${API_URL}/users`, {
-    method: 'POST',
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(params),
-  })
-    .then(res => {
-      console.log(res, res.ok, res.status);
+  const token = storage.getItem('token');
 
-      if (res.ok) {
-        location.href = '/profile/';
-      } else {
-        alert('아이디나 비밀번호가 일치하지 않습니다.');
-      }
-    })
-    .catch(err => console.error(err));
+  if (token) {
+      fetch(`${API_URL}/users`, {
+          method: 'POST',
+          headers: {
+              "Content-Type": "application/json",
+              "authorization": `${token}`
+          },
+          body: JSON.stringify(params),
+      })
+          .then(res => {
+              console.log(res, res.ok, res.status);
+
+              if (res.ok) {
+                  location.href = '/profile/';
+              } else {
+                  alert('아이디나 비밀번호가 일치하지 않습니다.');
+              }
+          })
+          .catch(err => console.error(err));
+  } else {
+      alert('유효하지 않은 사용자 입니다.');
+      location.href = '/change-info/';
+  }
 }
