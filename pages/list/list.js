@@ -41,8 +41,7 @@ const fetchData = async () => {
     en_name: category,
     page: page,
   });
-  console.log(page);
-  //console.log(data);
+
   if (data.products.length > 0) {
     loadCards(data.products);
     page++;
@@ -76,5 +75,3 @@ function loadCards(cards) {
 
   cardBox.appendChild(frag);
 }
-
-//await fetchData();

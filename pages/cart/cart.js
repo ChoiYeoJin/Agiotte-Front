@@ -4,8 +4,6 @@ import { getItem, removeCartItem } from "../utils/storage";
 
 let cart = getItem("cart") || [];
 
-console.log(cart);
-
 document.body.addEventListener("click", function (event) {
   if (event.target.matches(".purchase-button")) {
     purchase();
@@ -133,6 +131,7 @@ function renderCart() {
     .join("");
   window.removeProduct = function (productId) {
     cart = removeCartItem(productId);
+    totalAmount = cart.reduce((acc, item) => (acc += item.price * item.amount));
     renderCart();
   };
 
@@ -167,7 +166,6 @@ function renderCart() {
 }
 
 function purchase() {
-  alert("구매가 완료되었습니다.");
   cart = [];
   renderCart();
   location.href = "/order/";

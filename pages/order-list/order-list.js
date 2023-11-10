@@ -9,7 +9,6 @@ const fetchData = async () => {
   return data;
 };
 const data = await fetchData();
-console.log(data);
 
 const frag = document.createDocumentFragment();
 
