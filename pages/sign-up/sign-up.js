@@ -138,6 +138,7 @@ const registerUser = async e => {
       // 가입 OK
       const result = await response.text();
       location.href = "/login/";
+      alert("회원가입이 완료되었습니다.");
       console.log(result);
     } else {
       if (response.status === 404) {
