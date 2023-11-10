@@ -38,8 +38,11 @@ document.querySelector("#header").innerHTML = `
           <div class="header-login mt-3">
             <a class="logout cursor-pointer">로그아웃</a>
             <a class="mx-3" href="/order-list/">마이페이지</a>
-            <a href="/cart/"><i class="fa-solid fa-bag-shopping"></i></a>
+            <a class="px-5" href="/cart/"><i class="fa-solid fa-bag-shopping  pb-[50px]"></i></a>
           </div>
+          
+          
+          
         </div>
         <div class="mobile-header w-full flex lg:hidden items-center">
           <div class="mobile-skip-icon hidden cursor-pointer">
@@ -240,11 +243,9 @@ mobileUserMenuEl.addEventListener("mouseleave", () => {
 
 const enterSearchEvent = (e) => {
   if (e.key == "Enter" || e.keyCode == "13") {
-    api.sendGetWithQuery("/products/search", {
-      name: searchBarEl.value,
-      page: 1,
-    });
+    location.href = `/list/?search=${encodeURIComponent(searchBarEl.value)}`;
   }
 };
 
 searchBarEl.addEventListener("keydown", enterSearchEvent);
+mobileSearchBarEl.addEventListener("keydown", enterSearchEvent);

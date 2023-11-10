@@ -3,4 +3,4 @@ const lastImg = urlParams.get("last-img");
 
 const lastImgEl = document.querySelector(".last-img");
 
-lastImgEl.setAttribute("src", decodeURIComponent(lastImg));
+lastImgEl.setAttribute("src", lastImg);

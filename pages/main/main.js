@@ -14,12 +14,7 @@ const cardElements = document.querySelectorAll(".card");
 async function initMain() {
   const cardBox = document.querySelector(".card-box");
 
-  const cardFrame = document.createElement("div");
-  cardFrame.classList.add("grid");
-  cardFrame.classList.add("lg:grid-cols-6");
-  cardFrame.classList.add("md:grid-cols-3");
-  cardFrame.classList.add("gap-5");
-  cardFrame.classList.add("justify-center");
+  const frag = document.createDocumentFragment();
 
   const data = await api.sendGetWithQuery("/categories/products", {
     en_name: "goods",
@@ -27,16 +22,18 @@ async function initMain() {
   });
 
   data.products.forEach((item) => {
-    cardFrame.innerHTML += getCardHTML(
+    const div = document.createElement("div");
+    div.innerHTML += getCardHTML(
       item.seq,
       item.name,
       item.price,
       api.IMG_URL + item.img[0],
       item.condition
     );
+    frag.appendChild(div);
   });
 
-  cardBox.appendChild(cardFrame);
+  cardBox.appendChild(frag);
 }
 
 function clickCardEvent(e) {
