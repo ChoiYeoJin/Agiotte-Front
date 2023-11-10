@@ -1,47 +1,7 @@
 //서버에서 card 불러오기
 
-import { getCardHTML } from "../utils/card";
-import * as api from "../utils/api";
-
-//일단 없으니까 그냥 가져온셈 침
-const cards = [
-  { id: "1", price: 30000, name: "여아 신발", img: "test1.jpg", tag: "good" },
-  { id: "1", price: 30000, name: "원숭이 인형", img: "test2.jpg", tag: "new" },
-  { id: "1", price: 30000, name: "여아 신발", img: "test1.jpg", tag: "good" },
-  { id: "1", price: 40000, name: "원숭이 인형", img: "test2.jpg", tag: "new" },
-  { id: "1", price: 30000, name: "여아 신발", img: "test1.jpg", tag: "new" },
-  { id: "1", price: 40000, name: "원숭이 인형", img: "test2.jpg", tag: "good" },
-  { id: "1", price: 30000, name: "여아 신발", img: "test1.jpg", tag: "normal" },
-  {
-    id: "1",
-    price: 40000,
-    name: "원숭이 인형",
-    img: "test2.jpg",
-    tag: "normal",
-  },
-  { id: "1", price: 30000, name: "여아 신발", img: "test1.jpg", tag: "normal" },
-  {
-    id: "1",
-    price: 40000,
-    name: "원숭이 인형",
-    img: "test2.jpg",
-    tag: "normal",
-  },
-  { id: "1", price: 30000, name: "여아 신발", img: "test1.jpg", tag: "good" },
-  { id: "1", price: 40000, name: "원숭이 인형", img: "test2.jpg", tag: "good" },
-  { id: "1", price: 30000, name: "여아 신발", img: "test1.jpg", tag: "good" },
-  { id: "1", price: 40000, name: "원숭이 인형", img: "test2.jpg", tag: "good" },
-  { id: "1", price: 30000, name: "여아 신발", img: "test1.jpg", tag: "good" },
-  { id: "1", price: 40000, name: "원숭이 인형", img: "test2.jpg", tag: "good" },
-  { id: "1", price: 30000, name: "여아 신발", img: "test1.jpg", tag: "normal" },
-  {
-    id: "1",
-    price: 40000,
-    name: "원숭이 인형",
-    img: "test2.jpg",
-    tag: "normal",
-  },
-];
+import { getCardHTML } from "../utils/card.js";
+import * as api from "../utils/api.js";
 
 const data = await api.sendGetWithQuery("/categories/products", {
   en_name: "goods",
