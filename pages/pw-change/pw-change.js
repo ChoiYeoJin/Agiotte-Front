@@ -55,7 +55,7 @@ function clickChangeButton(e) {
     UserId,
   };
 
-  fetch(`${API_URL}/users/password`, {
+  fetch(`${API_URL}/users/password/:id`, {
     method: 'PUT',
     headers: {
       "Content-Type": "application/json",
