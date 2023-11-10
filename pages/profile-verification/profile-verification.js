@@ -45,7 +45,7 @@ function clickVerificationButton(e) {
               console.log(res, res.ok, res.status);
 
               if (res.ok) {
-                  location.href = '/profile/';
+                  location.href = '/change-info/';
               } else {
                   alert('아이디나 비밀번호가 일치하지 않습니다.');
               }
@@ -53,6 +53,6 @@ function clickVerificationButton(e) {
           .catch(err => console.error(err));
   } else {
       alert('유효하지 않은 사용자 입니다.');
-      location.href = '/change-info/';
+      location.href = '/profile-verification/';
   }
 }
