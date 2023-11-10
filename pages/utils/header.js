@@ -121,12 +121,12 @@ document.querySelector("#header").innerHTML = `
         </nav>
       </div>
       <div
-        class="mobile-menu w-full h-[200px] bg-white absolute pt-3 pl-2 z-10 hidden"
+        class="mobile-menu w-full h-[200px] bg-white absolute pt-3 pl-2 z-10 hidden md:hidden"
       >
-        <div class="bg-white pt-5 pl-20 flex space-x-10">
+        <div class="bg-white pt-5 pl-5 md:pl-20 flex space-x-10">
           <div>
             <div>
-              <a class="block mt-2 text-xl font-semibold" href="/list/?category=clothes"
+              <a class="block mt-2 md:text-xl font-semibold" href="/list/?category=clothes"
                 >유아의류</a
               >
             </div>
@@ -135,7 +135,7 @@ document.querySelector("#header").innerHTML = `
           </div>
           <div>
             <div>
-              <a class="block mt-2 text-xl font-semibold" href="/list/?category=goods"
+              <a class="block mt-2 md:text-xl font-semibold" href="/list/?category=goods"
                 >유아용품</a
               >
             </div>
@@ -145,33 +145,33 @@ document.querySelector("#header").innerHTML = `
             <div><a class="block mt-2 ml-2" href="/list/?category=fancyGoods">잡화</a></div>
           </div>
           <div>
-            <a class="block mt-2 text-xl font-semibold" href="/list/?category=furniture">가구</a>
+            <a class="block mt-2 md:text-xl font-semibold" href="/list/?category=furniture">가구</a>
           </div>
           <div>
-            <a class="block mt-2 text-xl font-semibold" href="/list/?category=etc">기타</a>
+            <a class="block mt-2 md:text-xl font-semibold" href="/list/?category=etc">기타</a>
           </div>
         </div>
       </div>
       <div
         class="mobile-user-menu w-[150px] h-[200px] absolute right-0 pt-3 pb-5 z-10 hidden "
       >
-        <div class="bg-white shadow-md py-5 px-5  flex flex-col justify-center space-y-2 ">
+        <div class="bg-white shadow-md py-5 px-5  flex flex-col justify-center space-y-2 z-10 ">
           <div>
             <div>
-              <a class="mobile-logout block mt-2 text-xl font-semibold" href=""
+              <a class="mobile-logout block mt-2  " href=""
                 >로그아웃</a
               >
             </div>
           </div>
           <div>
             <div>
-              <a class="mobile-my block mt-2 text-xl font-semibold" href="/order-list/"
+              <a class="mobile-my block mt-2 " href="/order-list/"
                 >마이페이지</a
               >
             </div>
           </div>
           <div>
-            <a class="block mt-2 text-xl font-semibold" href="/cart/">장바구니</a>
+            <a class="block mt-2 " href="/cart/">장바구니</a>
           </div>
         </div>
       </div>
@@ -243,7 +243,7 @@ mobileUserMenuEl.addEventListener("mouseleave", () => {
 
 const enterSearchEvent = (e) => {
   if (e.key == "Enter" || e.keyCode == "13") {
-    location.href = `/list/?search=${encodeURIComponent(searchBarEl.value)}`;
+    location.href = `/list/?search=${encodeURIComponent(e.target.value)}`;
   }
 };
 
