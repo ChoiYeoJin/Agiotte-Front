@@ -3,6 +3,7 @@ export default {
     root: 'pages',
     publicDir: '../public',
     build: {
+        target: 'esnext',
         outDir: '../dist',
         rollupOptions: {
             input: [

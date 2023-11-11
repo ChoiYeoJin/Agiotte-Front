@@ -1,30 +1,30 @@
-//login 기능
-const HEADER = {
-  "Content-Type": "application/json",
-};
+import * as api from "../utils/api.js";
+import * as storage from "../utils/storage.js";
 
-const loginButton = document.querySelector(".loginButton");
-loginButton.addEventListener("click", clickLoginButton);
+const loginButtonEl = document.querySelector(".login-button");
 
-function clickLoginButton(e) {
-  e.preventDefault();
+loginButtonEl.addEventListener("click", clickLoginButton);
+
+async function clickLoginButton(e) {
   const email = document.querySelector("#emailInput").value;
   const password = document.querySelector("#passwordInput").value;
 
-  alert(email + password);
-  fetch("/users/login", {
-    method: "POST",
-    headers: HEADER,
-    body: JSON.stringify({
-      email: email,
-      password: password,
-    }),
-  }).then((res) => {
-    const status = res.status;
-    if (status === 200) {
-      alert("login 성공!");
-    } else {
-      alert(`${status} 아이디 또는 비밀번호가 틀립니다.`);
-    }
+  //일단은 백엔드 보내는 부분은 제외해주세요.
+  const response = await api.sendPost("/users/login", {
+    UserId: email,
+    HashPwd: password,
   });
+
+  if (response !== undefined) {
+    storage.setItem("token", response.token);
+    storage.setItem("user-id", email);
+    location.href = "/main/";
+  } else {
+    alert("아이디 또는 비밀번호가 다릅니다!");
+  }
 }
+
+const signupButtonEl = document.querySelector(".signup-button");
+signupButtonEl.addEventListener("click", (e) => {
+  location.href = "/sign-up/";
+});

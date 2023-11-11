@@ -22,5 +22,13 @@ states.set("good", goodState);
 states.set("normal", normalState);
 
 export function getTagHTML(tagState) {
-  return states.get(tagState);
+  let localState = null;
+  if (tagState === "새상품") {
+    localState = "new";
+  } else if (tagState === "좋은 상태" || tagState === "좋은 상품") {
+    localState = "good";
+  } else if (tagState === "보통") {
+    localState = "normal";
+  }
+  return states.get(localState ?? tagState);
 }
