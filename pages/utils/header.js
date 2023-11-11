@@ -107,8 +107,8 @@ document.querySelector("#header").innerHTML = `
           >
             <div class="bg-white flex space-x-10 pt-5 pl-20">
               <div>
-                <div><a class="block" href="/list/?category=boy">여아의류</a></div>
-                <div><a class="block mt-2" href="/list/?category=girl">남아의류</a></div>
+                <div><a class="block" href="/list/?category=girl">여아의류</a></div>
+                <div><a class="block mt-2" href="/list/?category=boy">남아의류</a></div>
               </div>
               <div>
                 <div><a class="block" href="/list/?category=toy">장난감</a></div>
