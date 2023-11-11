@@ -25,6 +25,7 @@ const checkId = async () => {
       if (result === "중복 없음") isDuplicated = false;
     } else {
       console.error(`${response.status}: ${response.statusText}`);
+      alert("사용할 수 없는 아이디 입니다.");
     }
   } catch (e) {
     console.error(e);
@@ -46,7 +47,7 @@ const checkId = async () => {
   // }
 };
 
-const registerUser = async e => {
+const registerUser = async (e) => {
   e.preventDefault();
 
   const nameEl = document.getElementById("sign-up-name");
