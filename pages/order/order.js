@@ -2,7 +2,7 @@ import * as storage from "../utils/storage.js";
 import * as api from "../utils/api.js";
 import { clickZipButtonEvent } from "../utils/address.js";
 
-const user = await api.sendGet("/users");
+const token = storage.getItem("token");
 
 const urlParams = new URLSearchParams(window.location.search);
 const buyNow = urlParams.get("buyNow");
@@ -10,12 +10,28 @@ const buyNow = urlParams.get("buyNow");
 const userNameEl = document.querySelector(".user-name");
 const userEmailEl = document.querySelector(".user-email");
 // const userPhoneEl = document.querySelector(".user-phone");
+const zipCodeButtonEl = document.querySelector(".zip-code-button");
 const userAddrEl = document.querySelector(".user-addr");
+const zipEl = document.querySelector(".input-zip");
+const detailEl = document.querySelector(".input-detail-addr");
 
-userNameEl.innerText = user.UserName;
-userEmailEl.innerText = user.Email;
-// userPhoneEl.innerText = user.Phone === undefined ? "" : user.Phone;
-userAddrEl.innerText = user.Address;
+zipCodeButtonEl.addEventListener("click", function () {
+  clickZipButtonEvent(zipEl, detailEl);
+});
+
+let user = {};
+if (token) {
+  user = await api.sendGet("/users");
+  userNameEl.parentElement.innerHTML = user.UserName;
+  userNameEl.readOnly = true;
+  userNameEl.style.outline = "none";
+  userEmailEl.parentElement.innerHTML = user.Email;
+  userEmailEl.readOnly = true;
+  userEmailEl.style.outline = "none";
+  userAddrEl.innerText = user.Address;
+  // zipEl.value = addr.zip;
+  // detailEl = addr.addr;
+}
 
 //결제 정보
 const cartProductsEl = document.querySelector(".cart-products");
@@ -65,7 +81,15 @@ let lastImg = "";
 let isSuccess = false;
 async function clickPayButtonEvent(e) {
   const cart = storage.getItem("cart");
-
+  //user 비회원이면 user데이터 변경
+  if (!token) {
+    user = {
+      UserName: userNameEl.value,
+      Address: `${zipEl.value} ${detailEl.value}`,
+      Email: userEmailEl.value,
+    };
+    console.log(user);
+  }
   if (buyNow !== "true") {
     const productInfos = cart.map((item) => {
       return {

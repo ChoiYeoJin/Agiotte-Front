@@ -52,8 +52,8 @@ function clickVerificationButton(e) {
       console.log(res, res.ok, res.status);
 
       if (res.ok) {
-        alert("인증 메일이 발송되었습니다. 메일을 확인해주세요");
-        location.href = `/login/`;
+        alert("본인 인증 성공");
+        location.href = `/pw-change/`;
       } else {
         alert("아이디나 이메일이 일치하지 않습니다.");
       }
