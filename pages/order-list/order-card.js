@@ -11,7 +11,7 @@ export const getOrderCardHTML = (id, dateNumber, img, name, total, state) => {
                   alt=""
                 />
               </div>
-              <div class="px-2">${name}</div>
+              <div class="px-2 w-[180px]">${name}</div>
             </div>
             <div class="order-total flex items-center">${total}원</div>
             <div class="flex items-center col-span-2">

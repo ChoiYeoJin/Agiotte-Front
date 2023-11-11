@@ -1,4 +1,4 @@
-export const clickZipButtonEvent = () => {
+export const clickZipButtonEvent = (zipEl, addrEl) => {
   new daum.Postcode({
     oncomplete: function (data) {
       var addr = ""; // 주소 변수
@@ -26,10 +26,10 @@ export const clickZipButtonEvent = () => {
       } else {
       }
 
-      return {
-        zip: "(" + data.zonecode + ") " + addr,
-        addr: extraAddr,
-      };
+      zipEl.value = "(" + data.zonecode + ") " + addr;
+
+      addrEl.value = `${extraAddr} `;
+      addrEl.focus();
     },
   }).open();
 };

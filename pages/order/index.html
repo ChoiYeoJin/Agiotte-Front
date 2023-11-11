@@ -18,8 +18,8 @@
   </head>
   <body>
     <div id="header"></div>
-    <div class="">
-      <div class="mt-10 px-10">
+    <div class="min-w-[380px]">
+      <div class="mt-10 md:px-10">
         <div class="flex justify-between px-10 lg:px-40">
           <div>
             <p
@@ -44,27 +44,47 @@
         <div class="max-w-8xl mx-10 lg:mx-40 border border-black mt-6"></div>
       </div>
 
-      <div class="flex flex-col justify-start items-start mt-10 px-10">
+      <div class="flex flex-col justify-start items-start mt-10 md:px-10">
         <div class="px-10 lg:px-40 w-full">
           <p class="text-2xl text-black">구매자 정보</p>
           <table class="table-auto mt-4">
             <tr>
               <td class="first-column text-black">이름</td>
-              <td class="user-name"></td>
+              <td>
+                <input
+                  class="user-name border border-gray-200 text-sm"
+                  type="text"
+                />
+              </td>
             </tr>
             <tr>
               <td class="first-column text-black">이메일</td>
-              <td class="user-email"></td>
-            </tr>
-            <!-- <tr>
-              <td class="first-column text-black">휴대폰 번호</td>
-              <td class="user-phone">
-                <span></span><button class="">수정</button>
+              <td>
+                <input
+                  class="user-email border border-gray-200 text-sm min-w-[200px]"
+                  type="email"
+                />
               </td>
-            </tr> -->
+            </tr>
+
             <tr>
-              <td class="first-column text-black">주소</td>
-              <td class="user-addr"></td>
+              <td class="first-column text-black min-w-[70px]">주소</td>
+              <td
+                class="user-addr flex flex-col md:flex-row space-y-1 md:space-x-5"
+              >
+                <div class="relative">
+                  <input class="input-zip border border-gray-200" type="text" />
+                </div>
+                <p
+                  class="zip-code-button my-2 bg-gray-200 rounded-lg px-2 cursor-pointer w-20"
+                >
+                  우편번호
+                </p>
+                <input
+                  class="input-detail-addr border border-gray-200 min-w-[200px]"
+                  type="text"
+                />
+              </td>
             </tr>
           </table>
 
@@ -72,11 +92,11 @@
           <table class="table-auto mt-4">
             <tr>
               <td class="first-column text-black">상품명</td>
-              <td class="cart-products">여아 무늬 블라우스 외 2종</td>
+              <td class="cart-products"></td>
             </tr>
             <tr>
               <td class="first-column text-black">총상품가격</td>
-              <td class="cart-total-price">10,000원</td>
+              <td class="cart-total-price"></td>
             </tr>
             <tr>
               <td class="first-column text-black">결제방법</td>
@@ -106,6 +126,7 @@
 
   <footer id="footer"></footer>
 </html>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="module" src="../utils/header.js"></script>
 <script type="module" src="../utils/footer.js"></script>
 <script type="module" src="./order.js"></script>
