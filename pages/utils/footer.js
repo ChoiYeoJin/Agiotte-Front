@@ -21,9 +21,9 @@ document.querySelector("#footer").innerHTML = `
 
     <div class="mb-2">
       <ul class="space-x-5 text-xs">
-        <li class = inline-block><a>서울특별시 성동구 엘리스12길 34</a></li>
-        <li class = inline-block><a>사업자등록번호 123-45-67899</a></li>
-        <li class = inline-block><a>통신판매업신고 2023-성동구-1234</a></li>
+        <li class = inline-block><a href="#">서울특별시 성동구 엘리스12길 34</a></li>
+        <li class = inline-block><a href="#">사업자등록번호 123-45-67899</a></li>
+        <li class = inline-block><a href="#">통신판매업신고 2023-성동구-1234</a></li>
       </ul>
     </div>
 
