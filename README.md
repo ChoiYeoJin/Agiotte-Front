@@ -20,17 +20,17 @@
 ### 카드 형식의 상품 리스트
 이미지와 태그를 통해 상품의 상태를 리스트 단계에서 한 눈에 살펴볼 수 있고 스크롤을 통한 페이징으로 편하게 목록을 확인할 수 있도록 하였습니다.
 
-![상품목록](/uploads/472b3505323b6859c0769370aa49e50d/상품목록.png)
+![상품목록](https://github.com/ChoiYeoJin/Agiotte-Front/assets/17807025/bab0ee1b-2e36-4e61-8187-c04ff09188fc)
 
 ### 상품 상세
 상세 페이지 또한 여러 서브이미지들을 볼 수 있게 하여 중고거래 물품을 꼼꼼히 확인할 수 있도록 하였습니다.
 
-![상품상세](/uploads/d36318878378512194cf504fe155741f/상품상세.png)
+![상품상세](https://github.com/ChoiYeoJin/Agiotte-Front/assets/17807025/82ae5bbe-ad1d-48eb-8d19-25646a1816b5)
 
 ### 장바구니
 구매자는 상품을 장바구니에 담아 담은 상품들을 확인하거나 삭제하고, 총 주문 금액을 확인할 수 있습니다.
 
-![장바구니](/uploads/e2bdadfee941e197388c3d35e033a374/장바구니.png)
+![장바구니](https://github.com/ChoiYeoJin/Agiotte-Front/assets/17807025/1f6d3947-fb50-4385-9891-dd0e99fdddca)
 
 ### 구매 및 결제
 장바구니에 담긴 상품들을 결제하거나 단독 상품을 바로 결제할 수 있습니다.
@@ -38,12 +38,12 @@
 ### 사용자 인증
 사용자는 로그인, 회원가입, 아이디 찾기, 비밀번호 찾기, 본인 인증 등 사용자 정보를 관리하고 인증합니다. 
 
-![본인인증](/uploads/72d7c51bf0bd4839da8a7eff67391346/본인인증.png)
+![본인인증](https://github.com/ChoiYeoJin/Agiotte-Front/assets/17807025/390288b5-7920-4244-b3f9-7c5ac560f32a)
 
 ### 프로필 관리
 사용자는 프로필을 관리하고 주문내역을 확인, 변경, 취소할 수 있습니다.
 
-![주문목록](/uploads/7731219f42dd0dc4e2f00807aae51aad/주문목록.png)
+![주문목록](https://github.com/ChoiYeoJin/Agiotte-Front/assets/17807025/61e0abff-1a59-41e3-8f25-1519f02e2bab)
 
 ### 검색
 검색창에서 검색을 통해 관련 상품리스트를 확인할 수 있습니다.
@@ -51,7 +51,7 @@
 ### 반응형 처리
 상품 리스트, 상세 페이지, 결제까지 모바일 화면에서도 볼 수 있도록 하였습니다.
 
-![반응형](/uploads/a42472e2a783ff7166131f0bbf9b11c0/반응형.gif)
+![반응형](https://github.com/ChoiYeoJin/Agiotte-Front/assets/17807025/681533a3-a6c4-4800-85ad-93c1c5e20cea)
 
 ## 기술스택
 - HTML
